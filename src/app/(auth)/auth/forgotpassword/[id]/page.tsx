@@ -9,6 +9,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { useParams } from "next/navigation";
+import Goback from "@/components/Goback";
 
 const schema = z
   .object({
@@ -42,6 +43,8 @@ const Page = () => {
   return (
     <div className="grid h-screen grid-cols-2">
       <div className="relative bg-gradient-to-r from-blue-700 to-transparent p-56">
+      <Goback className="absolute left-8 top-8 bg-blue-50 text-blue-700" />
+
         <Image
           src={"/Traffic Light.png"}
           alt="Traffic Light"

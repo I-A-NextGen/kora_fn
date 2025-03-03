@@ -8,6 +8,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
+import Goback from "@/components/Goback";
 
 const schema = z.object({
   phoneOrEmail: z
@@ -37,6 +38,7 @@ const Page = () => {
   return (
     <div className="grid h-screen grid-cols-2">
       <div className="relative bg-gradient-to-r from-blue-700 to-transparent p-56">
+        <Goback className="absolute left-8 top-8 bg-blue-50 text-blue-700" />
         <Image
           src={"/Traffic Light.png"}
           alt=""
@@ -45,7 +47,10 @@ const Page = () => {
           className="object-contain"
         />
       </div>
-      <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col justify-center gap-4 p-32">
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="flex flex-col justify-center gap-4 p-32"
+      >
         <h1 className="text-blue-700">Injira muri konti yawe</h1>
         <p className="text-blue-700/60">Uzuza imyirondoro yawe ahabugenewe</p>
         <label className="flex flex-col gap-2">
@@ -55,7 +60,9 @@ const Page = () => {
             placeholder="Andika Nomero / Imeyiri yawe"
             {...register("phoneOrEmail")}
           />
-          {errors.phoneOrEmail && <p className="text-red-500">{errors.phoneOrEmail.message}</p>}
+          {errors.phoneOrEmail && (
+            <p className="text-red-500">{errors.phoneOrEmail.message}</p>
+          )}
         </label>
         <label className="flex flex-col gap-2">
           <span>Ijambobanga</span>
@@ -64,15 +71,17 @@ const Page = () => {
             placeholder="Andika ijambobanga"
             {...register("password")}
           />
-          {errors.password && <p className="text-red-500">{errors.password.message}</p>}
+          {errors.password && (
+            <p className="text-red-500">{errors.password.message}</p>
+          )}
         </label>
         <span>
-          Wibagiwe ijambo banga? {" "}
+          Wibagiwe ijambo banga?{" "}
           <Link href={"/auth/forgotpassword"} className="text-blue-700">
             Kanda hano.
           </Link>
         </span>
-        <div className="flex items-center gap-4 mt-8 justify-center flex-col">
+        <div className="mt-8 flex flex-col items-center justify-center gap-4">
           <Button size="lg" className="w-full" type="submit">
             Injira
           </Button>

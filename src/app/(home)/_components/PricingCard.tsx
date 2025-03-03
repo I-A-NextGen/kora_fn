@@ -24,7 +24,7 @@ const PricingCard = () => {
 
     ]
   return (
-    <div className='w-[400px] flex p-4 border-2 border-blue-700 rounded-2xl py-8 items-center text-center flex-col gap-4'>
+    <div className='w-[300px] flex p-4 border-2 border-blue-700 rounded-2xl py-8 items-center text-center flex-col gap-4'>
         <h4>Ibizamini 2</h4>
         <p>Lorem ipsum dolor sit amet consecte</p>
         <h2 className='font-black'>300 RWF</h2>
