@@ -6,7 +6,7 @@ import React from "react";
 const Navbar = () => {
   return (
     <nav
-      className="relative flex py-4 items-center px-16 justify-between bg-white font-mono text-black shadow-sm"
+      className="relative flex py-4 items-center px-16 justify-between  font-mono text-black shadow-sm"
       role="navigation"
     >
       <span>Logo</span>

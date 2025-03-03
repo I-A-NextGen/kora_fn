@@ -7,10 +7,12 @@ import CarsSvg from './CarsSvg'
 
 const Hero = () => {
   return (
-    <div className="min-h-screen relative flex items-center justify-center flex-col">
+    <div className="min-h-screen overflow-clip relative flex items-center justify-center flex-col">
+        <div className="absolute size-[520px] bg-blue-700 blur-[600px] top-0 -left-36 -z-10"/>
+        <div className="absolute size-[520px] bg-blue-700 blur-[600px] bottom-0 -right-36 -z-10"/>
         <CarsSvg className="absolute top-0 left-0 -z-10"/>
         <div className="flex flex-col justify-center  text-center items-center md:w-2/3 gap-8 p-16">
-          <Badge variant="outline" className="gap-1.5 bg-blue-500/10 w-fit">
+          <Badge variant="outline" className="gap-1.5 bg-blue-500/10 backdrop-blur-xl w-fit">
             <span
               className="size-1.5 rounded-full bg-yellow-500"
               aria-hidden="true"

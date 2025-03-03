@@ -35,7 +35,7 @@ const Page = () => {
   }
 
   const onSubmit = (data: FormData) => {
-    console.log("New Password Set:", data.newPassword);
+    console.log(data.newPassword);
   };
   const { id } = useParams();
 
