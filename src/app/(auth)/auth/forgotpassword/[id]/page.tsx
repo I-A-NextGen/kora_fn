@@ -10,6 +10,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { useParams } from "next/navigation";
 import Goback from "@/components/Goback";
+import { toast } from "sonner";
 
 const schema = z
   .object({
@@ -28,6 +29,7 @@ const Page = () => {
     formState: { errors },
   } = useForm({
     resolver: zodResolver(schema),
+    mode:"onBlur"
   });
 
   interface FormData {
@@ -37,6 +39,7 @@ const Page = () => {
 
   const onSubmit = (data: FormData) => {
     console.log(data.newPassword);
+    toast.success(`ijambobanga ryahinduwe neza`);
   };
   const { id } = useParams();
 

@@ -9,6 +9,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import Goback from "@/components/Goback";
+import { toast } from "sonner"
 
 const schema = z.object({
   phoneOrEmail: z
@@ -24,6 +25,7 @@ const Page = () => {
     formState: { errors },
   } = useForm({
     resolver: zodResolver(schema),
+    mode:"onBlur"
   });
 
   interface FormData {
@@ -33,6 +35,8 @@ const Page = () => {
 
   const onSubmit = (data: FormData) => {
     console.log(data);
+    toast.success(`Welcome Back, ${data.phoneOrEmail}!`)
+    
   };
 
   return (
