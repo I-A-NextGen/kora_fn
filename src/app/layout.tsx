@@ -1,4 +1,5 @@
 import TopLoader from "@/components/TopLoader";
+import { Toaster } from "@/components/ui/sonner";
 import "@/styles/globals.css";
 
 import { GeistSans } from "geist/font/sans";
@@ -17,6 +18,7 @@ export default function RootLayout({
     <html lang="en" className={`${GeistSans.variable}`}>
       <body>
       <TopLoader />
+      <Toaster position="top-right"/>
         {children}
         </body>
     </html>

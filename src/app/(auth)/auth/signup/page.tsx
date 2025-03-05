@@ -9,6 +9,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import Goback from "@/components/Goback";
+import { toast } from "sonner";
 
 const schema = z.object({
   name: z.string().min(2, "Amazina agomba kuba nibura inyuguti 2"),
@@ -22,7 +23,8 @@ const Page = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({ resolver: zodResolver(schema) });
+
+  } = useForm({ resolver: zodResolver(schema),mode:"onBlur" });
 
   interface FormData {
     name: string;
@@ -33,6 +35,7 @@ const Page = () => {
 
   const onSubmit = (data: FormData) => {
     console.log(data);
+    toast.success(`Welcome Back, ${data.name}!`)
   };
 
   return (
