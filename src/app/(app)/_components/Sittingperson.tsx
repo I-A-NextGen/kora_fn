@@ -1,13 +1,9 @@
 import React from "react";
 
-const Sittingperson = ({ className }: { className: string }) => {
+const SittingPerson = ({ className }: { className: string }) => {
   return (
     <div className={className}>
-      <svg
-        viewBox="0 0 144 176"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
+      <svg viewBox="0 0 144 176" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path
           d="M46.8253 143.548C45.3452 142.63 45.1337 137.674 51.2658 136.756C55.0719 136.206 65.6445 139.51 70.5078 141.713C70.9307 143.548 71.1422 145.2 69.8735 146.669C68.3933 148.137 65.8559 148.321 63.7414 148.137C59.7238 147.77 49.3627 145.2 46.8253 143.548Z"
           fill="#D58F77"
@@ -284,4 +280,4 @@ const Sittingperson = ({ className }: { className: string }) => {
   );
 };
 
-export default Sittingperson;
+export default SittingPerson;

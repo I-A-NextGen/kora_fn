@@ -54,7 +54,9 @@ const Page = () => {
             {...register("phoneOrEmail")}
           />
           {errors.phoneOrEmail && (
-            <p className="text-red-500">{errors.phoneOrEmail.message}</p>
+            <p className="text-sm text-red-500">
+              {errors.phoneOrEmail.message}
+            </p>
           )}
         </label>
         <label className="flex flex-col">
@@ -65,7 +67,7 @@ const Page = () => {
             {...register("password")}
           />
           {errors.password && (
-            <p className="text-red-500">{errors.password.message}</p>
+            <p className="text-sm text-red-500">{errors.password.message}</p>
           )}
         </label>
         <p>
