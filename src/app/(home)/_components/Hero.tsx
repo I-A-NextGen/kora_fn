@@ -1,50 +1,64 @@
-import { Badge } from '@/components/ui/badge'
-import { Button } from '@/components/ui/button'
-import { LogIn, Pen } from 'lucide-react'
-import Link from 'next/link'
-import React from 'react'
-import CarsSvg from './CarsSvg'
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { LogIn, Pen } from "lucide-react";
+import Link from "next/link";
+import React from "react";
+import CarsSvg from "./CarsSvg";
+import { IoStarSharp } from "react-icons/io5";
 
 const Hero = () => {
   return (
-    <div className="min-h-screen overflow-clip relative flex items-center justify-center flex-col">
-        <div className="absolute size-[520px] bg-blue-700 blur-[600px] top-0 -left-36 -z-10"/>
-        <div className="absolute size-[520px] bg-blue-700 blur-[600px] bottom-0 -right-36 -z-10"/>
-        <CarsSvg className="absolute top-0 left-0 -z-10"/>
-        <div className="flex flex-col justify-center  text-center items-center md:w-2/3 gap-8 p-16">
-          <Badge variant="outline" className="gap-1.5 bg-blue-500/10 backdrop-blur-xl w-fit">
-            <span
-              className="size-1.5 rounded-full bg-yellow-500"
-              aria-hidden="true"
-            ></span>
-            Kora imyitozo muminota 18 gusa
-          </Badge>
-          <h1 className="text-blue-700 ">Gerageza ubumenyi bwawe mu mategeko y’umuhanda,</h1>
+    <div className="relative flex min-h-screen flex-col items-center justify-center overflow-clip bg-gradient-to-br from-primary/30 from-0% via-white via-40% to-primary/15 pt-20 px-[5%] lg:px-[10%]">
+      <CarsSvg className="absolute left-0 top-0 -z-10" />
+      <div className="flex flex-col items-center justify-center gap-12 text-center lg:w-2/3">
+        <Badge
+          variant="outline"
+          className="w-fit gap-1.5 rounded-3xl border border-primary px-6 py-2 text-sm text-primary sm:text-base"
+        >
+          <IoStarSharp className="text-lg text-yellow-500" />
+          <span>Ni Ubuntu, ku nshuro ya mbere.</span>
+        </Badge>
+        <h1 className="text-primary">
+          Gerageza ubumenyi bwawe mu mategeko y&apos;umuhanda,
+        </h1>
+        <div className="w-[95%] sm:w-[80%] flex flex-col gap-4">
           <p>
-            Kwisonga mugutanga ubumenyi mumategeko y’umuhanda no kugutegura
-            gukora ikizamini Nkotanyi Driving School ni urubuga (ishuri)
-            rwashyiriweho gufasha abanyarwanda bose kumenya no gusobanukirwa
-            amategeko y’umuhanda mu rwego rwo guteza imbere umutekano wo mu
-            muhanda.
+            Kwisonga mugutanga ubumenyi mumategeko y&apos;umuhanda no kugutegura
+            gukora ikizamini
           </p>
-          <small>
-            Inshuro yambere ni Ubuntu, Kongera <br />
-            gukora ugura code iguha ibizamini byinshi
-          </small>
-          <div>
-            <Button variant={"outline"} size={"lg"} asChild>
-              
-              <Link href="/auth/signup"><LogIn/>Iyandikishe</Link>
-            </Button>
-            <Button variant={"default"} className="bg-blue-700" size={"lg"} asChild>
-              
-              <Link href="/auth/login"><Pen/>Tangira</Link>
-            </Button>
-          </div>
+          <p>
+            Nkotanyi Driving School ni urubuga (ishuri) rwashyiriweho gufasha
+            abanyarwanda bose kumenya no gusobanukirwa amategeko y&apos;umuhanda
+            mu rwego rwo guteza imbere umutekano wo mu muhanda.
+          </p>
         </div>
-        <div className="bg-blue-500"></div>
+        <div className="flex flex-col sm:flex-row gap-5">
+          <Button
+            variant={"outline"}
+            size={"lg"}
+            className="h-12 cursor-pointer rounded-3xl border-primary bg-primary/15 text-primary"
+            asChild
+          >
+            <Link href="/auth/signup">
+              <LogIn />
+              <span>Iyandikishe</span>
+            </Link>
+          </Button>
+          <Button
+            variant={"default"}
+            className="h-12 cursor-pointer rounded-3xl bg-primary"
+            size={"lg"}
+            asChild
+          >
+            <Link href="/auth/login">
+              <Pen />
+              Tangira Isuzuma
+            </Link>
+          </Button>
+        </div>
       </div>
-  )
-}
+    </div>
+  );
+};
 
-export default Hero
+export default Hero;

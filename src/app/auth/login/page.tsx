@@ -2,14 +2,12 @@
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
-import Goback from "@/components/Goback";
-import { toast } from "sonner"
+import { toast } from "sonner";
 
 const schema = z.object({
   phoneOrEmail: z
@@ -25,7 +23,7 @@ const Page = () => {
     formState: { errors },
   } = useForm({
     resolver: zodResolver(schema),
-    mode:"onBlur"
+    mode: "onBlur",
   });
 
   interface FormData {
@@ -35,29 +33,20 @@ const Page = () => {
 
   const onSubmit = (data: FormData) => {
     console.log(data);
-    toast.success(`Welcome Back, ${data.phoneOrEmail}!`)
-    
+    toast.success(`Welcome Back, ${data.phoneOrEmail}!`);
   };
 
   return (
-    <div className="grid h-screen grid-cols-2">
-      <div className="relative bg-gradient-to-r from-blue-700 to-transparent p-56">
-        <Goback className="absolute left-8 top-8 bg-blue-50 text-blue-700" />
-        <Image
-          src={"/Traffic Light.png"}
-          alt=""
-          width={800}
-          height={800}
-          className="object-contain"
-        />
-      </div>
-      <form
-        onSubmit={handleSubmit(onSubmit)}
-        className="flex flex-col justify-center gap-4 p-32"
-      >
-        <h1 className="text-blue-700">Injira muri konti yawe</h1>
-        <p className="text-blue-700/60">Uzuza imyirondoro yawe ahabugenewe</p>
-        <label className="flex flex-col gap-2">
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className="flex w-[100%] flex-col gap-6 lg:col-start-2 lg:max-w-[30rem]"
+    >
+      <h3 className="text-primary">Injira muri konti yawe</h3>
+      <p className="leading-5 text-primary">
+        Uzuza imyirondoro yawe ahabugenewe
+      </p>
+      <div className="flex w-full flex-col justify-center gap-5 text-[.95rem]">
+        <label className="flex flex-col">
           <span>Nomero ya terefoni / Imeyiri</span>
           <Input
             type="text"
@@ -68,7 +57,7 @@ const Page = () => {
             <p className="text-red-500">{errors.phoneOrEmail.message}</p>
           )}
         </label>
-        <label className="flex flex-col gap-2">
+        <label className="flex flex-col">
           <span>Ijambobanga</span>
           <Input
             type="password"
@@ -79,23 +68,29 @@ const Page = () => {
             <p className="text-red-500">{errors.password.message}</p>
           )}
         </label>
-        <span>
-          Wibagiwe ijambo banga?{" "}
+        <p>
+          <span>Wibagiwe ijambo banga? </span>
           <Link href={"/auth/forgotpassword"} className="text-blue-700">
             Kanda hano.
           </Link>
-        </span>
-        <div className="mt-8 flex flex-col items-center justify-center gap-4">
-          <Button size="lg" className="w-full" type="submit">
+        </p>
+        <div className="mt-5 flex flex-col items-center justify-center gap-2">
+          <Button size={"lg"} className="h-12 w-full" type="submit">
             Injira
           </Button>
-          or
-          <Button size="lg" variant="outline" className="w-full">
-            <Link href="/auth/signup">Kwiyandikisha</Link>
-          </Button>
+          <span>Or</span>
+          <Link className="w-full" href={"/auth/signup"}>
+            <Button
+              size={"lg"}
+              variant={"outline"}
+              className="h-12 w-full border-primary bg-primary/15 text-primary"
+            >
+              Iyandikishe
+            </Button>
+          </Link>
         </div>
-      </form>
-    </div>
+      </div>
+    </form>
   );
 };
 
