@@ -1,57 +1,84 @@
 import { Clock, Flag } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
 const page = () => {
   return (
     <>
-      <div className="flex min-h-screen flex-col gap-4 p-8">
+      <div className="flex min-h-screen flex-col gap-8">
         <div>
           <h4>Mwiriwe, Kalisa!</h4>
-          <p>ku wa 25, Gashyantare, 2025</p>
+          <p className="text-[.95rem] text-gray-500">
+            ku wa 25, Gashyantare, 2025
+          </p>
         </div>
-        <div className="grid grid-cols-1 gap-4 p-4 md:grid-cols-1 lg:grid-cols-3">
-          <div className="flex min-h-64 flex-row items-end gap-4 rounded-2xl border-2 border-black/10 p-8 shadow-2xl">
-            <div>
-              <h1 className="text-7xl">100</h1>
-              <p>Ibibazo wakoze</p>
-            </div>
-            <div className="flex flex-col gap-4 text-blue-700">
-              <span className="inline-flex gap-2">
-                <Clock />: 4h
-              </span>
-              <span className="inline-flex gap-2">
-                <Flag />: 90/200
-              </span>
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-1 lg:grid-cols-3">
+          <div className="flex h-60 flex-row items-end gap-4 rounded-2xl bg-white px-8 py-4 shadow-2xl">
+            <div className="flex flex-row items-center gap-6 rounded-2xl">
+              <div className="flex flex-col gap-2">
+                <h1 className="text-[5rem] font-semibold">100</h1>
+                <p className="font-medium tracking-tight text-gray-500">
+                  Ibibazo wakoze
+                </p>
+              </div>
+              <div className="flex flex-col gap-1 font-medium text-primary">
+                <span className="inline-flex gap-1">
+                  <Clock size={22} />
+                  <span>:&nbsp;&nbsp;4h</span>
+                </span>
+                <span className="inline-flex gap-1">
+                  <Flag size={22} />
+                  <span>:&nbsp;&nbsp;90/200</span>
+                </span>
+              </div>
             </div>
           </div>
-          <div className="flex min-h-64 relative flex-row items-end gap-4 rounded-2xl border-2 border-black/10 p-8 shadow-2xl">
-          <p className="absolute top-8 right-8">iki cyumweru</p>
-            <div>
-              <h1 className="text-7xl">10%</h1>
-              <p>Amahirwe Yawe  yo gutsinda</p>
-            </div>
-          </div>
-          <div className="flex relative min-h-64 flex-row bg-blue-700 text-white items-end gap-4 rounded-2xl border-2 border-black/10 p-8 shadow-2xl">
-          <span className="absolute bg-white text-blue-700 px-4 py-2 rounded-2xl top-8 right-8">20 min</span>
+          <div className="relative flex h-60 flex-row items-end gap-4 overflow-hidden rounded-2xl bg-white px-8 py-4 shadow-2xl">
+            <p className="absolute right-8 top-5 text-sm font-semibold">
+              iki cyumweru
+            </p>
+
             <div className="flex flex-col gap-2">
-              <p>Itoze buri munsi, wongere ubumenyi 
-              n’amahirwe, biguhesha insinzi. </p>
-              <h4>Tangira aka kanya!  </h4>
-              <Link href={""} className="bg-white w-fit text-blue-700 px-4 py-2 rounded-2xl">Ibibazo wakoze</Link>
+              <div className="flex items-end">
+                <h1 className="text-[5rem] font-semibold">10</h1>
+                <span className="mb-1 text-4xl">%</span>
+              </div>
+              <p className="font-medium tracking-tight z-10 text-gray-600">
+                Amahirwe Yawe yo gutsinda
+              </p>
             </div>
-            <div className="flex flex-col gap-4 text-blue-700">
-              <span className="inline-flex gap-2">
-                <Clock />: 4h
-              </span>
-              <span className="inline-flex gap-2">
-                <Flag />: 90/200
-              </span>
+
+            <div className="absolute -bottom-8 -right-20 z-0 h-48 w-64 rotate-12 rounded-full bg-white/25 opacity-55">
+              <Image
+                src={"/traffic-cone.png"}
+                alt="traffic-cone"
+                fill
+                className="absolute bottom-0 right-0 opacity-80"
+              />
+            </div>
+          </div>
+          <div className="relative flex h-60 flex-row items-end gap-4 rounded-2xl bg-primary p-5 text-white shadow-2xl">
+            <p className="absolute right-4 top-4 rounded-xl bg-white px-3 py-1 text-sm font-medium text-primary">
+              20 min
+            </p>
+            <div className="flex flex-col gap-3">
+              <p className="w-[90%] text-sm tracking-tight">
+                Itoze buri munsi, wongere ubumenyi n&apos;amahirwe, biguhesha
+                insinzi.
+              </p>
+              <p className="font-semibold">Tangira aka kanya! </p>
+              <Link
+                href={""}
+                className="mt-2 w-fit rounded-xl bg-white px-4 py-2 text-sm font-medium text-blue-700"
+              >
+                Tangira imyitozo
+              </Link>
             </div>
           </div>
         </div>
-        <div className=" p-4">
-          <div className="w-full min-h-72 rounded-2xl shadow-2xl bg-blue-700"/>
+        <div className="">
+          <div className="min-h-72 w-full rounded-2xl bg-blue-700 shadow-2xl" />
         </div>
       </div>
     </>

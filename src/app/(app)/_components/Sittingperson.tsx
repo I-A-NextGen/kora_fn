@@ -4,8 +4,6 @@ const Sittingperson = ({ className }: { className: string }) => {
   return (
     <div className={className}>
       <svg
-        width="144"
-        height="176"
         viewBox="0 0 144 176"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"

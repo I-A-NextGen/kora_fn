@@ -8,14 +8,12 @@ import { Clock } from "lucide-react";
 import { questions } from "@/lib/utils";
 import Link from "next/link";
 
-
-
 export default function Quiz() {
   const [currentQuestion, setCurrentQuestion] = useState<number>(0);
   const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
   const [score, setScore] = useState<number>(0);
   const [showResult, setShowResult] = useState<boolean>(false);
-  const [feedback, setFeedback] = useState<boolean | null>(null); 
+  const [feedback, setFeedback] = useState<boolean | null>(null);
   const [timeLeft, setTimeLeft] = useState<number>(1200);
 
   useEffect(() => {
@@ -54,9 +52,11 @@ export default function Quiz() {
   };
 
   return (
-    <div className="flex min-h-screen flex-col bg-gray-100">
-      <div className="flex justify-between p-8">
-        <Link href={"/"}><h1>Kora</h1></Link>
+    <div className="flex min-h-screen flex-col gap-16 bg-primary/10">
+      <div className="sticky top-0 flex h-20 items-center justify-between bg-white px-[5%]">
+        <Link href={"/"}>
+          <h3>KORA</h3>
+        </Link>
         <span className="inline-flex items-center gap-4 rounded-2xl bg-blue-700 p-2 px-4 text-white">
           <Clock />
           <p>
@@ -66,9 +66,9 @@ export default function Quiz() {
         </span>
       </div>
       <div className="grid h-[720px] place-items-center">
-        <Card className="w-full max-w-lg p-5">
+        <Card className="max-w-[38rem] p-4 py-5">
           <CardHeader>
-            <CardTitle className="text-center">
+            <CardTitle className="-mb-4 text-gray-500">
               {showResult
                 ? "Ikizamini kirarangiye!"
                 : `Ikibazo ${currentQuestion + 1}`}
@@ -85,15 +85,15 @@ export default function Quiz() {
                 </Button>
               </div>
             ) : (
-              <div>
+              <div className="flex flex-col gap-8">
                 {questions[currentQuestion] &&
                 typeof questions[currentQuestion].question === "string" ? (
-                  <p className="mb-4 font-medium">
+                  <p className="font-medium">
                     {questions[currentQuestion].question}
                   </p>
                 ) : (
-                  <div className="flex h-full flex-col items-center">
-                    <p className="mb-4 font-medium">
+                  <div className="flex h-full flex-col items-center gap-5">
+                    <p className="w-full font-semibold">
                       {questions[currentQuestion]?.text}
                     </p>
                     <Image
@@ -105,46 +105,50 @@ export default function Quiz() {
                         )?.image || ""
                       }
                       alt="Question"
-                      width={200}
-                      height={200}
+                      width={180}
+                      height={180}
                     />
                   </div>
                 )}
-                {questions[currentQuestion]?.options.map((option, index) => (
-                  <button
-                    key={index}
-                    className={`flex w-full items-center space-x-2 rounded-lg border p-4 ${
-                      selectedAnswer === option.text
-                        ? "bg-blue-500 text-white"
-                        : "bg-white"
-                    } ${
-                      feedback !== null &&
-                      option.text === questions[currentQuestion]?.answer
-                        ? "bg-green-500/50 text-white"
-                        : feedback !== null && selectedAnswer === option.text
-                          ? "bg-red-500/50 text-white"
-                          : ""
-                    }`}
-                    onClick={() => handleAnswerSelection(option.text)}
-                    disabled={feedback !== null}
-                  >
-                    {option.image && (
-                      <Image
-                        src={option.image}
-                        alt={option.text}
-                        width={40}
-                        height={40}
-                      />
-                    )}
-                    <span>{option.text}</span>
-                  </button>
-                ))}
+                <div className="flex flex-col gap-3">
+                  {questions[currentQuestion]?.options.map((option, index) => (
+                    <button
+                      key={index}
+                      className={`flex w-full items-center rounded-sm border border-black/50 p-3 ${
+                        selectedAnswer === option.text
+                          ? "bg-blue-700/25"
+                          : "bg-white"
+                      } ${
+                        feedback !== null &&
+                        option.text === questions[currentQuestion]?.answer
+                          ? "bg-green-500/50 text-white"
+                          : feedback !== null && selectedAnswer === option.text
+                            ? "bg-red-500/50 text-white"
+                            : ""
+                      }`}
+                      onClick={() => handleAnswerSelection(option.text)}
+                      disabled={feedback !== null}
+                    >
+                      {option.image && (
+                        <Image
+                          src={option.image}
+                          alt={option.text}
+                          width={40}
+                          height={40}
+                        />
+                      )}
+                      <span className="text-justify text-[.9rem]">
+                        {option.text}
+                      </span>
+                    </button>
+                  ))}
+                </div>
                 <Button
-                  className="mt-4 w-full"
+                  className="w mt-4 h-12 disabled:bg-black/50"
                   onClick={handleSubmit}
                   disabled={!selectedAnswer || feedback !== null}
                 >
-                  Ohereza Igisubizo
+                  Emeza igisubizo
                 </Button>
               </div>
             )}
