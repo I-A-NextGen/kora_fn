@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -88,7 +88,7 @@
     @apply scroll-m-20 text-sm font-medium md:text-base lg:text-lg;
   }
   p {
-    @apply text-sm sm:text-base leading-7;
+    @apply text-sm leading-7 sm:text-base;
   }
   span {
     @apply text-sm md:text-base;
@@ -109,7 +109,7 @@
   }
 
   .select__placeholder {
-    @apply text-red-600;
+    @apply text-gray-500;
   }
 
   .select__indicator-separator {

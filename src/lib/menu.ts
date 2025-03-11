@@ -1,42 +1,56 @@
-import { Calendar, Globe, History, Home, Inbox, LayoutDashboard, LogOut, Play, Search, Settings } from "lucide-react";
+import {
+  CircleDollarSign,
+  CircleHelp,
+  Globe,
+  LayoutDashboard,
+  LogOut,
+} from "lucide-react";
+import { LuNotebookPen } from "react-icons/lu";
+import { TbTransactionDollar } from "react-icons/tb";
+import { PiUsersThreeBold } from "react-icons/pi";
 
 export const items = [
-    {
-      title: "Dashboard",
-      url: "../dashboard",
-      icon: LayoutDashboard,
-    },
-    {
-      title: "Imyitozo ",
-      url: "/client/dashboard/quiz",
-      icon: Settings,
-    },
-    {
-      title: "Ibyakozwe",
-      url: "/client/dashboard/history",
-      icon: History,
-    },
-    {
-      title: "Ubwishyu",
-      url: "/client/dashboard/payment",
-      icon: Play,
-    },
-  ]
+  {
+    role: "*",
+    label: "Dashboard",
+    url: "",
+    icon: LayoutDashboard,
+  },
+  {
+    role: "*",
+    label: "Exams",
+    url: "exams",
+    icon: LuNotebookPen,
+  },
+  {
+    role: "admin",
+    label: "Clients",
+    url: "clients",
+    icon: PiUsersThreeBold,
+  },
+  {
+    role: "admin",
+    label: "Transactions",
+    url: "transactions",
+    icon: TbTransactionDollar,
+  },
+  {
+    role: "client",
+    label: "Payment",
+    url: "payment",
+    icon: CircleDollarSign,
+  },
+];
 
-  export const itemsfooter = [
-    {
-      title: "Ikinyarwanda",
-      url: "",
-      icon: Globe,
-    },
-    {
-      title: "FAQ ",
-      url: "",
-      icon: Settings,
-    },
-    {
-      title: "Gusohoka",
-      url: "",
-      icon: LogOut,
-    }
-  ]
+export const itemsfooter = [
+  {
+    label: "FAQ ",
+    url: "#",
+    icon: CircleHelp,
+  },
+  {
+    label: "Log Out",
+    url: "#",
+    icon: LogOut,
+  },
+];
