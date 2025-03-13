@@ -1,5 +1,6 @@
 import TopLoader from "@/components/TopLoader";
 import { Toaster } from "@/components/ui/sonner";
+import StoreProvider from "@/lib/redux/StoreProvider";
 import "@/styles/globals.css";
 
 import { GeistSans } from "geist/font/sans";
@@ -17,10 +18,12 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${GeistSans.variable}`}>
       <body>
-      <TopLoader />
-      <Toaster position="top-right"/>
-        {children}
-        </body>
+        <TopLoader />
+        <StoreProvider>
+          <Toaster position="top-right" />
+          {children}
+        </StoreProvider>
+      </body>
     </html>
   );
 }

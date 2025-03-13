@@ -109,7 +109,7 @@
   }
 
   .select__placeholder {
-    @apply text-gray-500;
+    @apply text-red-600;
   }
 
   .select__indicator-separator {

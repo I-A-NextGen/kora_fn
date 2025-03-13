@@ -31,8 +31,7 @@ const Page = () => {
     phoneOrEmail: string;
   }
 
-  const onSubmit = (data: FormData) => {
-    console.log(data);
+  const onSubmit = (data: FormData) => 
     toast.success(`Link is sent to your email!`)
   };
 

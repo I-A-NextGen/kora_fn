@@ -21,7 +21,6 @@ import Sittingperson from "@/app/(app)/_components/Sittingperson";
 
 export function AppSidebar() {
   const path = usePathname();
-  console.log(path);
 
   const isActive = (href: string) => {
     return path === href;
