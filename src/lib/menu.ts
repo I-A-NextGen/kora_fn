@@ -3,22 +3,22 @@ import { Calendar, Globe, History, Home, Inbox, LayoutDashboard, LogOut, Play, S
 export const items = [
     {
       title: "Dashboard",
-      url: "/dashboard",
+      url: "../dashboard",
       icon: LayoutDashboard,
     },
     {
       title: "Imyitozo ",
-      url: "/quiz",
+      url: "/client/dashboard/quiz",
       icon: Settings,
     },
     {
       title: "Ibyakozwe",
-      url: "/history",
+      url: "/client/dashboard/history",
       icon: History,
     },
     {
       title: "Ubwishyu",
-      url: "/payment",
+      url: "/client/dashboard/payment",
       icon: Play,
     },
   ]
