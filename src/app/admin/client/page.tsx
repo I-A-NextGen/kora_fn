@@ -1,5 +1,7 @@
+"use client";
+
 import { Card } from "@/components/ui/card";
-import React from "react";
+import React, { useId, useState } from "react";
 import {
   Table,
   TableBody,
@@ -10,51 +12,25 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Activity, DotIcon, Edit } from "lucide-react";
+import { Activity, DotIcon, Edit, SearchIcon } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Clients, Democlients } from "@/lib/items";
 
-const items = [
-  {
-    id: "1",
-    IssueDate: "25, Gashy, 2025",
-    ExpireDate: "25, Gashy, 2025",
-    Code: "DSGR31DG",
-    PhoneNumber: "0790000832",
-    Package: "17/20",
-    name: "Alex Thompson",
-    email: "alex.t@company.com",
-    location: "San Francisco, US",
-    status: "Active",
-    balance: "$1,250.00",
-  },
-  {
-    id: "1",
-    IssueDate: "25, Gashy, 2025",
-    ExpireDate: "25, Gashy, 2025",
-    Code: "DSGR31DG",
-    PhoneNumber: "0790000832",
-    Package: "17/20",
-    name: "Alex Thompson",
-    email: "alex.t@company.com",
-    location: "San Francisco, US",
-    status: "Active",
-    balance: "$1,250.00",
-  },
-  {
-    id: "1",
-    IssueDate: "25, Gashy, 2025",
-    ExpireDate: "25, Gashy, 2025",
-    Code: "DSGR31DG",
-    PhoneNumber: "0790000832",
-    Package: "17/20",
-    name: "Alex Thompson",
-    email: "alex.t@company.com",
-    location: "San Francisco, US",
-    status: "Active",
-    balance: "$1,250.00",
-  },
-];
 
-const page = () => {
+
+const Page = () => {
+  const [searchQuery, setSearchQuery] = useState("");
+  const id = useId();
+
+  const filteredItemsClients = Clients.filter(item =>
+    item.name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
+  const filteredItemsDemoClients = Democlients.filter(item =>
+    item.name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
   return (
     <div className="flex min-h-screen flex-col gap-8 bg-blue-50 p-8">
       <div>
@@ -62,27 +38,39 @@ const page = () => {
         <p>ku wa 25, Gashyantare, 2025</p>
       </div>
       <div className="flex gap-4">
-        <Tabs
-          defaultValue="Clients"
-          className="flex w-full flex-col items-start"
-        >
+        <Tabs defaultValue="Clients" className="flex w-full flex-col items-start">
           <TabsList className="flex size-fit flex-row gap-4 bg-transparent">
-            <TabsTrigger
-              value="Clients"
-              className="flex min-w-96 flex-col items-start gap-2 border-b-4 p-4 data-[state=active]:border-blue-500 data-[state=active]:bg-blue-500/30"
-            >
-              <h4>Clients</h4>
-              <span>500</span>
+            <TabsTrigger value="Clients" className="flex min-w-56 flex-row items-center justify-center gap-2 px-4 py-3 shadow-2xl data-[state=active]:border-blue-500 data-[state=active]:bg-blue-500/80">
+              <p>Clients</p>
+              <span className="rounded-2xl bg-blue-700 px-4 py-1 text-white">500</span>
             </TabsTrigger>
-            <TabsTrigger
-              value="DemoClients"
-              className="flex min-w-96 flex-col items-start gap-2 border-b-4 p-4 data-[state=active]:border-blue-500 data-[state=active]:bg-blue-500/30"
-            >
-              <h4>Clients</h4>
-              <span>500</span>
+            <TabsTrigger value="DemoClients" className="flex min-w-56 flex-row items-center justify-center gap-2 px-4 py-3 shadow-2xl data-[state=active]:border-blue-500 data-[state=active]:bg-blue-500/80">
+              <p>Demo Clients</p>
+              <span className="rounded-2xl bg-blue-700 px-4 py-1 text-white">20</span>
             </TabsTrigger>
           </TabsList>
           <div className="w-full p-4">
+            <div className="max-w-72 *:not-first:mt-2">
+              <Label htmlFor={id}></Label>
+              <div className="relative">
+                <Input
+                  id={id}
+                  className="peer pe-9 ps-9"
+                  placeholder="Search..."
+                  type="search"
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                />
+                <div className="pointer-events-none absolute inset-y-0 start-0 flex items-center justify-center ps-3 text-muted-foreground/80 peer-disabled:opacity-50">
+                  <SearchIcon size={16} />
+                </div>
+                <button
+                  className="absolute inset-y-0 end-0 flex h-full w-9 items-center justify-center rounded-e-md text-muted-foreground/80 outline-none transition-[color,box-shadow] hover:text-foreground focus:z-10 focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50"
+                  aria-label="Submit search"
+                  type="submit"
+                >
+                </button>
+              </div>
+            </div>
             <TabsContent value="Clients">
               <Table>
                 <TableHeader className="bg-muted/50">
@@ -97,7 +85,7 @@ const page = () => {
                   </TableRow>
                 </TableHeader>
                 <TableBody>
-                  {items.map((item, index) => (
+                  {filteredItemsClients.map((item, index) => (
                     <TableRow key={index}>
                       <TableCell className="p-4 font-medium odd:bg-muted/50 odd:hover:bg-muted/50">
                         {index + 1 + " ."}
@@ -129,7 +117,7 @@ const page = () => {
                   </TableRow>
                 </TableHeader>
                 <TableBody>
-                  {items.map((item, index) => (
+                  {filteredItemsDemoClients.map((item, index) => (
                     <TableRow key={index}>
                       <TableCell className="p-4 font-medium odd:bg-muted/50 odd:hover:bg-muted/50">
                         {index + 1 + " ."}
@@ -154,4 +142,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

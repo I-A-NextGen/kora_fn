@@ -1,7 +1,7 @@
 import { AppSidebar } from "@/components/app-sidebar";
 import { SidebarProvider } from "@/components/ui/sidebar";
-import Navbar from "../(app)/_components/Navbar";
 import { Adminsidebar } from "./_components/AdminSidebar";
+import Navbar from "./_components/Navbar";
 
 
 export default function Layout({ children }: { children: React.ReactNode }) {
@@ -10,6 +10,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     } as React.CSSProperties}>
       <Adminsidebar />
       <section className="w-full">
+        <Navbar/>
         {children}
       </section>
     </SidebarProvider>

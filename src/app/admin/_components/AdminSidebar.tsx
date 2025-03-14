@@ -16,7 +16,13 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
 import { itemsfooter } from "@/lib/menu";
-import { History, LayoutDashboard, Notebook, PersonStanding, Wallet } from "lucide-react";
+import {
+  History,
+  LayoutDashboard,
+  Notebook,
+  PersonStanding,
+  Wallet,
+} from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -30,38 +36,38 @@ export function Adminsidebar() {
 
   const items = [
     {
-        label: "Dashboard",
-        href: "/admin/dashboard",
-        icon: LayoutDashboard,
+      label: "Dashboard",
+      href: "/admin/",
+      icon: LayoutDashboard,
     },
     {
-        label: "Ibizamini",
-        href: "/admin/quiz",
-        icon: Notebook,
+      label: "Ibizamini",
+      href: "/admin/exam",
+      icon: Notebook,
     },
     {
-        label: "Abakiliriya",
-        href: "/admin/client",
-        icon: PersonStanding,
+      label: "Clients",
+      href: "/admin/client",
+      icon: PersonStanding,
     },
     {
-        label: "Ibyakozwe",
-        href: "/admin/done",
-        icon: History,
+      label: "Ibyakozwe",
+      href: "/admin/done",
+      icon: History,
     },
     {
-        label: "Ubwishyu",
-        href: "/admin/payment",
-        icon: Wallet,
+      label: "Ubwishyu",
+      href: "/admin/payment",
+      icon: Wallet,
     },
-  ]
+  ];
 
   return (
-    <Sidebar className="bg-white ">
+    <Sidebar className="bg-white">
       <SidebarHeader className="grid min-h-24 place-items-center text-blue-700">
         <h1 className="">Kora</h1>
       </SidebarHeader>
-      <SidebarContent className="justify-between flex">
+      <SidebarContent className="flex justify-between">
         <SidebarGroup className="group-data-[collapsible=icon]:hidden">
           <div className="flex list-none flex-col gap-2">
             {items.map((item, index) => (
