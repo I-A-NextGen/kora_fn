@@ -5,16 +5,14 @@ import { type Metadata } from "next";
 import Navbar from "./_components/Navbar";
 import Footer from "./_components/Footer";
 
-
-
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-      <div>
-        <Navbar/>
+    <div className="relative">
+        <Navbar />
         {children}
-        <Footer/>
-        </div>
+      <Footer />
+    </div>
   );
 }

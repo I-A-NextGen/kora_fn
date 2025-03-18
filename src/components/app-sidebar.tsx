@@ -17,35 +17,34 @@ import { items, itemsfooter } from "@/lib/menu";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Button } from "./ui/button";
-import Sittingperson from "@/app/(home)/_components/Sittingperson";
+import Sittingperson from "@/app/(app)/_components/Sittingperson";
 
 export function AppSidebar() {
   const path = usePathname();
-  console.log(path);
 
   const isActive = (href: string) => {
     return path === href;
   };
 
   return (
-    <Sidebar className="bg-white">
-      <SidebarHeader className="grid min-h-24 place-items-center text-blue-700">
-        <h1 className="">Kora</h1>
+    <Sidebar className="min-h-svh bg-white px-2 py-5">
+      <SidebarHeader className="grid min-h-24 text-primary">
+        <h4 className="px-4 font-bold">KORA</h4>
       </SidebarHeader>
-      <SidebarContent>
+      <SidebarContent className="justify-between">
         <SidebarGroup className="group-data-[collapsible=icon]:hidden">
           <div className="flex list-none flex-col gap-2">
             {items.map((item, index) => (
               <SidebarMenuItem
-                className={`flex items-center rounded-md p-2 duration-300 ${
+                className={`flex items-center rounded-md p-2 duration-300 hover:bg-primary hover:text-white ${
                   isActive(item.url)
-                    ? "bg-blue-700 text-white hover:bg-blue-700/80"
-                    : "bg-white text-blue-700"
+                    ? "bg-primary text-white hover:bg-primary/80"
+                    : "bg-white"
                 }`}
                 key={index}
               >
                 <SidebarMenuButton
-                  className="inline-flex gap-4 p-4"
+                  className="inline-flex gap-3 p-3"
                   asChild
                   isActive
                 >
@@ -59,20 +58,20 @@ export function AppSidebar() {
           </div>
         </SidebarGroup>
         <SidebarGroup>
-          <div className="min-h-48 relative rounded-2xl bg-blue-700 p-8 text-white">
-            <div className="flex flex-col z-10 gap-2">
-            <Sittingperson className="absolute -z-10"/>
-              <h3 className="font-medium">Support 24/7</h3>
-              <p>Contacts us anytime</p>
+          <div className="relative min-h-60 rounded-2xl bg-primary p-5 text-white">
+            <div className="z-10 flex flex-col gap-6">
+              <div className="absolute bottom-0 right-0 size-36 rounded-full bg-white/25">
+                <Sittingperson className="absolute bottom-2 right-3 w-24 opacity-80" />
+              </div>
+              <h6 className="font-medium">Support 24/7</h6>
+              <p className="-mt-5 text-sm font-light">Contacts us anytime</p>
               <Button
                 variant={"outline"}
-                className="text-blue-700 w-fit"
+                className="w-fit rounded-[.5rem] !text-sm text-primary"
                 asChild
                 size={"sm"}
               >
-                <Link href="/contact">
-                  <>Contact us</>
-                </Link>
+                <Link href="/contact">Contact us</Link>
               </Button>
             </div>
           </div>
@@ -81,15 +80,15 @@ export function AppSidebar() {
           <div className="flex list-none flex-col gap-2">
             {itemsfooter.map((item, index) => (
               <SidebarMenuItem
-                className={`flex items-center rounded-md p-2 duration-300 ${
+                className={`flex items-center rounded-md p-2 duration-300 hover:bg-primary hover:text-white ${
                   isActive(item.url)
-                    ? "bg-blue-700 text-white hover:bg-blue-700/40"
-                    : "bg-white text-blue-700"
+                    ? "bg-primary text-white hover:bg-primary/40"
+                    : "bg-white"
                 }`}
                 key={index}
               >
                 <SidebarMenuButton
-                  className="inline-flex gap-4 p-4"
+                  className="inline-flex gap-3 p-3"
                   asChild
                   isActive
                 >

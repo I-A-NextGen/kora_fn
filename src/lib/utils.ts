@@ -67,7 +67,7 @@ const question = {
   options: [
     { text: "Ntugomba kwinjira" },
     { text: "Ugomba guhagarara" },
-    { text: "Urujya n’uruza rw’ibinyabiziga" },
+    { text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis dignissimos excepturi possimus ratione totam nam modi, corrupti voluptatum dolor? Rerum quod iusto unde neque." },
     { text: "Uburyo bumwe bwo kugenda" },
   ],
   answer: "Ntugomba kwinjira",
@@ -94,4 +94,3 @@ export const questions: Question[] = [
   question,
   question,
 ];
-

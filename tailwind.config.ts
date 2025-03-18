@@ -7,14 +7,14 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        dmsans: ["DM Sans", "serif"],
+        poppins: ["Poppins", "sans-serif"],
         WorkSans: ["Work Sans", "sans-serif"],
         sans: ["var(--font-geist-sans)", ...fontFamily.sans],
       },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
-        sm: "calc(var(--radius) - 4px)",
+        sm: "calc(var(--radius) - 6px)",
       },
       colors: {
         background: "hsl(var(--background))",
@@ -28,7 +28,7 @@ export default {
           foreground: "hsl(var(--popover-foreground))",
         },
         primary: {
-          DEFAULT: "hsl(var(--primary))",
+          DEFAULT: "#1935CA",
           foreground: "hsl(var(--primary-foreground))",
         },
         secondary: {
@@ -85,13 +85,22 @@ export default {
             height: "0",
           },
         },
+        slideInToLeft: {
+          from: {
+            transform: "translateX(100%)",
+          },
+          to: {
+            transform: "translateX(0)",
+          },
+        },
       },
       animation: {
+        slideInToLeft: "slideInToLeft .5s ease-out forwards",
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
       },
-      
     },
   },
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
   plugins: [require("tailwindcss-animate")],
 } satisfies Config;
