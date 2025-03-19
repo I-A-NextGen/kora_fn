@@ -95,9 +95,9 @@ const Page = () => {
                 <TableHeader className="bg-muted/50">
                   <TableRow className="hover:bg-transparent">
                     <TableHead className="w-16 p-4">No</TableHead>
-                    <TableHead className="w-56">Question</TableHead>
+                    <TableHead className="w-96">Question</TableHead>
                     <TableHead>Lang</TableHead>
-                    <TableHead>Is Free</TableHead>
+                    <TableHead className="">Is Free</TableHead>
                     <TableHead className="text-right">Actions</TableHead>
                   </TableRow>
                 </TableHeader>
@@ -109,13 +109,13 @@ const Page = () => {
                       </TableCell>
                       <TableCell>{item.question}</TableCell>
                       <TableCell>{item.Lang}</TableCell>
-                      <TableCell>
+                      <TableCell className="w-32 flex items-center">
                         {item.IsFree == false ? (
-                          <span className="rounded-xl bg-green-700 p-2 px-4">
+                          <span className="rounded-xl text-white bg-green-700 p-2 px-4">
                             True
                           </span>
                         ) : (
-                          <span className="rounded-xl bg-red-700 p-2 px-4">
+                          <span className="rounded-xl text-white bg-red-700 p-2 px-4">
                             false
                           </span>
                         )}
@@ -149,11 +149,11 @@ const Page = () => {
                       <TableCell>{item.Lang}</TableCell>
                       <TableCell>
                         {item.IsFree == false ? (
-                          <span className="rounded-xl bg-green-700 p-2 px-4">
+                          <span className="rounded-xl bg-green-700 text-white p-2 px-4">
                             True
                           </span>
                         ) : (
-                          <span className="rounded-xl bg-red-700 p-2 px-4">
+                          <span className="rounded-xl bg-red-700 text-white p-2 px-4">
                             false
                           </span>
                         )}
