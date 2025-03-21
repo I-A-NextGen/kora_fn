@@ -237,7 +237,7 @@ export default function Page() {
               <InfoCard title="Personal Information">
                 <div className="flex w-full pl-5 text-base font-normal tracking-[-0.48]">
                   <div className="flex w-full flex-col gap-2 text-black">
-                    <Label htmlFor="firstName" className="flex flex-row items-center gap-4">
+                    <Label htmlFor="firstName" className="flex flex-col  gap-4">
                       <span className="w-1/3">First Name</span>
                       <Input
                         id="firstName"
@@ -247,7 +247,7 @@ export default function Page() {
                       />
                     </Label>
                     <div className="">
-                      <Label htmlFor="lastName" className="flex flex-row items-center gap-4">
+                      <Label htmlFor="lastName" className="flex flex-col  gap-4">
                         <span className="w-1/3">Last Name</span>
                         <Input
                           id="lastName"
@@ -258,7 +258,7 @@ export default function Page() {
                       </Label>
                     </div>
                     <div className="">
-                      <Label htmlFor="phone" className="flex flex-row items-center gap-4">
+                      <Label htmlFor="phone" className="flex flex-col  gap-4">
                         <span className="w-1/3">phone</span>
                         <Input
                           id="phone"
