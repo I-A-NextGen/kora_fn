@@ -3,13 +3,8 @@
 import {
   Sidebar,
   SidebarContent,
-  SidebarFooter,
   SidebarGroup,
-  SidebarGroupContent,
-  SidebarGroupLabel,
   SidebarHeader,
-  SidebarMenu,
-  SidebarMenuAction,
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
@@ -17,7 +12,7 @@ import { items, itemsfooter } from "@/lib/menu";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Button } from "./ui/button";
-import Sittingperson from "@/app/(app)/_components/Sittingperson";
+import SittingPerson from "@/app/(app)/_components/Sittingperson";
 
 export function AppSidebar() {
   const path = usePathname();
@@ -27,41 +22,41 @@ export function AppSidebar() {
   };
 
   return (
-    <Sidebar className="min-h-svh bg-white px-2 py-5">
-      <SidebarHeader className="grid min-h-24 text-primary">
+    <Sidebar className="md:min-h-svh md:px-2 md:py-5">
+      <SidebarHeader className="hidden min-h-24 text-primary md:grid">
         <h4 className="px-4 font-bold">KORA</h4>
       </SidebarHeader>
       <SidebarContent className="justify-between">
-        <SidebarGroup className="group-data-[collapsible=icon]:hidden">
-          <div className="flex list-none flex-col gap-2">
-            {items.map((item, index) => (
-              <SidebarMenuItem
-                className={`flex items-center rounded-md p-2 duration-300 hover:bg-primary hover:text-white ${
-                  isActive(item.url)
-                    ? "bg-primary text-white hover:bg-primary/80"
-                    : "bg-white"
-                }`}
-                key={index}
+        <SidebarGroup className="flex-row justify-between gap-2 group-data-[collapsible=icon]:hidden md:flex-col">
+          {items.map((item, index) => (
+            <SidebarMenuItem
+              className={`flex items-center rounded-md duration-300 hover:bg-primary hover:text-white md:p-2 ${
+                isActive(item.url)
+                  ? "bg-primary text-white hover:bg-primary/80"
+                  : "bg-none"
+              }`}
+              key={index}
+            >
+              <SidebarMenuButton
+                className="inline-flex h-fit flex-col gap-0 md:flex-row md:gap-3 md:px-3"
+                asChild
+                isActive
               >
-                <SidebarMenuButton
-                  className="inline-flex gap-3 p-3"
-                  asChild
-                  isActive
-                >
-                  <Link href={item.url}>
-                    <item.icon />
-                    <span>{item.title}</span>
-                  </Link>
-                </SidebarMenuButton>
-              </SidebarMenuItem>
-            ))}
-          </div>
+                <Link href={item.url}>
+                  <item.icon />
+                  <span className="text-xs font-normal tracking-tight md:text-[.9rem] md:font-medium md:tracking-normal">
+                    {item.title}
+                  </span>
+                </Link>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+          ))}
         </SidebarGroup>
-        <SidebarGroup>
+        <SidebarGroup className="hidden md:flex">
           <div className="relative min-h-60 rounded-2xl bg-primary p-5 text-white">
             <div className="z-10 flex flex-col gap-6">
               <div className="absolute bottom-0 right-0 size-36 rounded-full bg-white/25">
-                <Sittingperson className="absolute bottom-2 right-3 w-24 opacity-80" />
+                <SittingPerson className="absolute bottom-2 right-3 w-24 opacity-80" />
               </div>
               <h6 className="font-medium">Support 24/7</h6>
               <p className="-mt-5 text-sm font-light">Contacts us anytime</p>
@@ -76,7 +71,7 @@ export function AppSidebar() {
             </div>
           </div>
         </SidebarGroup>
-        <SidebarGroup className="group-data-[collapsible=icon]:hidden">
+        <SidebarGroup className="hidden group-data-[collapsible=icon]:hidden md:flex">
           <div className="flex list-none flex-col gap-2">
             {itemsfooter.map((item, index) => (
               <SidebarMenuItem
@@ -88,13 +83,15 @@ export function AppSidebar() {
                 key={index}
               >
                 <SidebarMenuButton
-                  className="inline-flex gap-3 p-3"
+                  className="inline-flex gap-3 px-3"
                   asChild
                   isActive
                 >
                   <Link href={item.url}>
                     <item.icon />
-                    <span>{item.title}</span>
+                    <span className="text-xs font-normal tracking-tight md:text-[.9rem] md:font-medium md:tracking-normal">
+                      {item.title}
+                    </span>
                   </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>

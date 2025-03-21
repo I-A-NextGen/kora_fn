@@ -11,43 +11,17 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { quizhistory } from "@/lib/utils";
+import StartExamCard from "@/app/(app)/_components/StartExamCard";
+import DashHeader from "@/app/(app)/_components/DashHeader";
 
 const page = () => {
   return (
     <>
       <div className="flex min-h-screen flex-col gap-4">
-        <div>
-          <h4>IMYITOZO</h4>
-          <p>ku wa 25, Gashyantare, 2025</p>
-        </div>
+        <DashHeader title="IMYITOZO" />
         <div className="grid grid-cols-1 gap-4 md:grid-cols-1 lg:grid-cols-3">
-          <div className="relative flex min-h-64 flex-row items-end gap-4 rounded-2xl border-2 border-black/10 bg-blue-700 p-8 text-white shadow-2xl">
-            <span className="absolute right-8 top-8 rounded-2xl bg-white px-4 py-2 text-blue-700">
-              20 min
-            </span>
-            <div className="flex flex-col gap-2">
-              <p>
-                Itoze buri munsi, wongere ubumenyi n’amahirwe, biguhesha
-                insinzi.{" "}
-              </p>
-              <h4>Tangira aka kanya! </h4>
-              <Link
-                href={""}
-                className="w-fit rounded-2xl bg-white px-4 py-2 text-blue-700"
-              >
-                Ibibazo wakoze
-              </Link>
-            </div>
-            <div className="flex flex-col gap-4 text-blue-700">
-              <span className="inline-flex gap-2">
-                <Clock />: 4h
-              </span>
-              <span className="inline-flex gap-2">
-                <Flag />: 90/200
-              </span>
-            </div>
-          </div>
-          <div className="col-span-2 flex min-h-64 flex-row items-end gap-4 rounded-2xl border-2 border-black/10 p-8 shadow-2xl">
+          <StartExamCard />
+          <div className="col-span-2 flex min-h-60 flex-row items-end gap-4 bg-white rounded-2xl border-2 border-black/10 p-8 shadow-2xl">
             <div>
               <h1 className="text-[8rem]">10</h1>
               <p>Imyitozo wakoze </p>
