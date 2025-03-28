@@ -88,7 +88,7 @@
     @apply scroll-m-20 text-sm font-medium md:text-base lg:text-lg;
   }
   p {
-    @apply text-sm leading-7 sm:text-base;
+    @apply text-[.9rem] leading-7 md:text-[.95rem] lg:text-base;
   }
   span {
     @apply text-sm md:text-base;
