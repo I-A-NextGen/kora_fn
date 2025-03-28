@@ -1,8 +1,10 @@
+import Image from "next/image";
 import Link from "next/link";
+import ExamIcon from "/exam-icon.png";
 
 const StartExamCard = () => {
   return (
-    <div className="relative flex h-60 flex-row items-end gap-4 rounded-2xl bg-primary p-6 text-white shadow-xl md:h-60 md:shadow-xl">
+    <div className="relative w-full flex h-60 flex-row items-end gap-4 rounded-2xl bg-primary p-6 text-white shadow-xl md:h-60 md:shadow-xl">
       <p className="absolute right-4 top-4 rounded-xl bg-white px-3 py-1 text-sm font-medium text-primary">
         20 min
       </p>
@@ -18,8 +20,15 @@ const StartExamCard = () => {
           Tangira imyitozo
         </Link>
       </div>
+      <Image
+        src="/exam-icon.png"
+        className="absolute  bottom-2 -right-2 rotate-[10deg] opacity-35"
+        width={130}
+        height={130}
+        alt="exam-icon"
+      />
     </div>
   );
-}
+};
 
-export default StartExamCard
+export default StartExamCard;

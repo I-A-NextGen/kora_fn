@@ -39,7 +39,7 @@ const Page = () => {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="flex w-[100%] flex-col gap-6 lg:col-start-2 lg:max-w-[30rem]"
+      className="flex w-[100%] flex-col py-20 gap-6 lg:col-start-2 lg:max-w-[30rem]"
     >
       <h3 className="text-primary">Injira muri konti yawe</h3>
       <p className="leading-5 text-primary">

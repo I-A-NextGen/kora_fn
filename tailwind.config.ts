@@ -11,6 +11,9 @@ export default {
         WorkSans: ["Work Sans", "sans-serif"],
         sans: ["var(--font-geist-sans)", ...fontFamily.sans],
       },
+      screens: {
+        sm: "570px",
+      },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",

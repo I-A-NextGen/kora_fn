@@ -115,4 +115,8 @@
   .select__indicator-separator {
     @apply !hidden;
   }
+
+  [data-sonner-toast] [data-title] {
+    line-height: 1.3 !important;
+  }
 }

@@ -1,22 +1,43 @@
 "use client";
 import { useRouter } from "next/navigation";
-import { Button } from "./ui/button";
 import { IoMdArrowRoundBack } from "react-icons/io";
+import { useEffect, useState } from "react";
 
 const Goback = ({ className }: { className?: string }) => {
   const router = useRouter();
+
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 30) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+    handleScroll();
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
     <div
       className={
+        (isScrolled
+          ? "bg-white/55 px-6 shadow-xl backdrop-blur-md duration-100 "
+          : " ") +
         className +
-        " z-10 flex cursor-pointer items-center gap-x-2 font-medium text-primary hover:font-semibold"
+        " z-10 flex cursor-pointer items-center gap-x-2 rounded-3xl py-2 font-medium text-primary hover:font-semibold"
       }
       onClick={() => router.back()}
     >
       <div className="flex size-8 items-center justify-center rounded-full border border-blue-700/70 bg-white/60">
         <IoMdArrowRoundBack className="text-lg" />
       </div>
-      <span>Go back</span>
+      <span>Subira inyuma</span>
     </div>
   );
 };

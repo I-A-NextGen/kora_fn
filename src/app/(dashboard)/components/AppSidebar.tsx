@@ -86,7 +86,7 @@ export function AppSidebar() {
                 <p className="-mt-5 text-sm font-light">Contacts us anytime</p>
                 <Button
                   variant={"outline"}
-                  className="w-fit rounded-[.5rem] !text-sm text-primary"
+                  className="w-fit rounded-[.5rem] !text-sm text-primary z-20"
                   asChild
                   size={"sm"}
                 >
@@ -97,7 +97,7 @@ export function AppSidebar() {
           </SidebarGroup>
         )}
 
-        <SidebarGroup className="hidden border-t border-black/50 group-data-[collapsible=icon]:hidden md:flex">
+        <SidebarGroup className="hidden border-t border-gray-300 group-data-[collapsible=icon]:hidden md:flex">
           <div className="flex list-none flex-col gap-2">
             <DropdownMenu>
               <DropdownMenuTrigger

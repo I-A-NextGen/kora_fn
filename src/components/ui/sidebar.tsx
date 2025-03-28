@@ -22,7 +22,7 @@ import {
 const SIDEBAR_COOKIE_NAME = "sidebar_state";
 const SIDEBAR_COOKIE_MAX_AGE = 60 * 60 * 24 * 7;
 const SIDEBAR_WIDTH = "16rem";
-const SIDEBAR_WIDTH_TABLET = "13rem";
+const SIDEBAR_WIDTH_TABLET = "14rem";
 const SIDEBAR_WIDTH_ICON = "3rem";
 const SIDEBAR_KEYBOARD_SHORTCUT = "b";
 
@@ -235,7 +235,7 @@ const Sidebar = React.forwardRef<
         {/* This is what handles the sidebar gap on desktop */}
         <div
           className={cn(
-            "relative hidden w-[--sidebar-width-tablet] transition-[width] duration-200 ease-linear md:block md:h-svh lg:w-[--sidebar-width]",
+            "relative hidden w-[--sidebar-width-tablet] transition-[width] duration-100 ease-linear md:block md:h-svh lg:w-[--sidebar-width]",
             "group-data-[collapsible=offcanvas]:w-0",
             "group-data-[side=right]:rotate-180",
             variant === "floating" || variant === "inset"
@@ -245,7 +245,7 @@ const Sidebar = React.forwardRef<
         />
         <div
           className={cn(
-            "bottom-0 z-10 flex h-full md:w-[--sidebar-width-tablet] w-full transition-[left,right,width] duration-200 ease-linear md:fixed md:inset-y-0 md:h-svh lg:w-[--sidebar-width]",
+            "bottom-0 z-10 flex h-full md:w-[--sidebar-width-tablet] w-full transition-[left,right,width] duration-100 ease-linear md:fixed md:inset-y-0 md:h-svh lg:w-[--sidebar-width]",
             side === "left"
               ? "left-0 group-data-[collapsible=offcanvas]:left-[calc(var(--sidebar-width)*-1)]"
               : "right-0 group-data-[collapsible=offcanvas]:right-[calc(var(--sidebar-width)*-1)]",
@@ -450,7 +450,7 @@ const SidebarGroupLabel = React.forwardRef<
       ref={ref}
       data-sidebar="group-label"
       className={cn(
-        "flex h-8 shrink-0 items-center rounded-md px-2 text-xs font-medium text-sidebar-foreground/70 outline-none ring-sidebar-ring transition-[margin,opacity] duration-200 ease-linear focus-visible:ring-2 [&>svg]:size-4 [&>svg]:shrink-0",
+        "flex h-8 shrink-0 items-center rounded-md px-2 text-xs font-medium text-sidebar-foreground/70 outline-none ring-sidebar-ring transition-[margin,opacity] duration-300 ease-linear focus-visible:ring-2 [&>svg]:size-4 [&>svg]:shrink-0",
         "group-data-[collapsible=icon]:-mt-8 group-data-[collapsible=icon]:opacity-0",
         className,
       )}

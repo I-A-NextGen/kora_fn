@@ -61,13 +61,13 @@ const page = () => {
             </div>
             <p className="text-gray-500">Total Revenue</p>
           </div>
-          <div className="flex flex-col gap-5 overflow-hidden rounded-xl md:border bg-white md:p-5">
+          <div className="flex flex-col gap-5 overflow-hidden rounded-xl bg-white md:border md:p-5">
             <div className="flex items-center gap-10 self-end">
               <div className="flex items-center gap-1">
                 <div className="size-2 rounded-full bg-primary md:size-3" />
                 <span className="text-xs md:text-sm">Income</span>
               </div>
-              <div className="flex items-center gap-3 border border-gray-200 px-3 rounded-md">
+              <div className="flex items-center gap-3 rounded-md border border-gray-200 px-3">
                 <span className="text-sm">2025</span>
                 <ChevronDown className="w-5" />
               </div>
@@ -140,7 +140,7 @@ const page = () => {
         <div className="w-full gap-4 rounded-2xl bg-white px-4 py-6 shadow-2xl md:px-6 md:py-8 lg:w-3/5">
           <h6 className="">Recent Transactions</h6>
           <Table className="mt-5 min-w-[27rem]">
-            <TableHeader className="h-[3.25rem] md:h-14">
+            <TableHeader className="">
               <TableRow className="hover:bg-transparent">
                 <TableHead className="w-[25%] p-4">Itariki</TableHead>
                 <TableHead className="w-[15%] text-center">Ingano</TableHead>
@@ -150,7 +150,7 @@ const page = () => {
             </TableHeader>
             <TableBody>
               {invoices.map((item, i) => (
-                <TableRow key={i} className="h-[3.25rem] md:h-14">
+                <TableRow key={i}>
                   <TableCell className="text-nowrap">{item.date}</TableCell>
                   <TableCell className="text-center">{item.Ingano}</TableCell>
                   <TableCell className="text-center">{item.Konti}</TableCell>
@@ -160,7 +160,7 @@ const page = () => {
             </TableBody>
           </Table>
         </div>
-        <div className="w-full gap-4 rounded-2xl bg-white px-4 py-6 shadow-2xl md:px-6 md:py-8 lg:w-2/5">
+        <div className="s w-full gap-4 rounded-2xl bg-white px-4 py-6 shadow-2xl md:px-6 md:py-8 lg:w-2/5">
           <h6 className="">Recent Reports</h6>
           <div className="mt-5 flex w-full flex-col gap-2">
             {[1, 2, 3, 4].map((item, i) => (

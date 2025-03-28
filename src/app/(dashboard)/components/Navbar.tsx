@@ -157,7 +157,7 @@ const Navbar = () => {
                     </li>
                   </div>
                   <li className="flex items-center justify-between overflow-hidden rounded-3xl border-2 border-primary pl-4">
-                    <PlanAndUpgrade className="rounded-3xl" />
+                    <PlanAndUpgrade className="rounded-3xl flex" />
                   </li>
                 </ul>
               </nav>

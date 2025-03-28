@@ -1,37 +1,46 @@
-"use client"
+"use client";
 
-import type React from "react"
+import type React from "react";
 
-import { useState, useCallback, useEffect } from "react"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Button } from "@/components/ui/button"
-import { AlertCircle, Save } from "lucide-react"
-import { z } from "zod"
-import { toast } from "sonner"
-import DashHeader from "./DashHeader"
+import { useState, useCallback, useEffect } from "react";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Button } from "@/components/ui/button";
+import { AlertCircle, Save } from "lucide-react";
+import { z } from "zod";
+import { toast } from "sonner";
+import DashHeader from "./DashHeader";
 
 const profileSchema = z
   .object({
     firstName: z.string().min(2, "First name must be at least 2 characters"),
     lastName: z.string().min(2, "Last name must be at least 2 characters"),
-    phone: z.string().regex(/^\+?[0-9\s\-()]{8,}$/, "Please enter a valid phone number"),
+    phone: z
+      .string()
+      .regex(/^\+?[0-9\s\-()]{8,}$/, "Please enter a valid phone number"),
     email: z.string().email("Please enter a valid email").or(z.literal("")),
-    currentPassword: z.string().min(1, "Current password is required when changing password").optional(),
-    password: z.string().min(8, "Password must be at least 8 characters").optional().or(z.literal("")),
+    currentPassword: z
+      .string()
+      .min(1, "Current password is required when changing password")
+      .optional(),
+    password: z
+      .string()
+      .min(8, "Password must be at least 8 characters")
+      .optional()
+      .or(z.literal("")),
   })
   .refine(
     (data) => {
       if (data.password && !data.currentPassword) {
-        return false
+        return false;
       }
-      return true
+      return true;
     },
     {
       message: "Current password is required to change password",
       path: ["currentPassword"],
     },
-  )
+  );
 const profileData = {
   name: "JANE SMITH",
   role: "Client",
@@ -45,37 +54,43 @@ const profileData = {
   examsCompleted: 2,
   totalExams: 5,
   currentDate: "ku wa 25, Gashyantare, 2025",
-}
+};
 interface InfoCardProps {
-  title: string
-  children: React.ReactNode
-  className?: string
+  title: string;
+  children: React.ReactNode;
+  className?: string;
 }
 interface FormInputs {
-  firstName: string
-  lastName: string
-  phone: string
-  email: string
-  currentPassword: string
-  password: string
+  firstName: string;
+  lastName: string;
+  phone: string;
+  email: string;
+  currentPassword: string;
+  password: string;
 }
 
-const InfoCard: React.FC<InfoCardProps> = ({ title, children, className = "" }) => {
+const InfoCard: React.FC<InfoCardProps> = ({
+  title,
+  children,
+  className = "",
+}) => {
   return (
-    <div className={`-6 overflow-hidden rounded-[15] bg-white py-[30] ${className}`}>
+    <div
+      className={`-6 overflow-hidden rounded-[15] bg-white py-[30] ${className}`}
+    >
       <div className="mb-4 flex w-full items-center justify-between text-lg font-semibold tracking-[-0.54] text-black">
         <div>{title}</div>
       </div>
       {children}
     </div>
-  )
-}
+  );
+};
 const ErrorMessage = (message: string) => (
   <div className="mt-1 flex items-center gap-1 text-sm text-red-500">
     <AlertCircle className="h-4 w-4" />
     <span>{message}</span>
   </div>
-)
+);
 
 export default function AccountProfile() {
   const [userData, setUserData] = useState({
@@ -83,7 +98,7 @@ export default function AccountProfile() {
     lastName: profileData.lastName,
     phone: profileData.phone,
     email: profileData.email,
-  })
+  });
   const [formInputs, setFormInputs] = useState({
     firstName: userData.firstName,
     lastName: userData.lastName,
@@ -91,8 +106,8 @@ export default function AccountProfile() {
     email: userData.email,
     currentPassword: "",
     password: "",
-  })
-  const [isFormModified, setIsFormModified] = useState(false)
+  });
+  const [isFormModified, setIsFormModified] = useState(false);
   useEffect(() => {
     const hasChanged =
       formInputs.firstName !== userData.firstName ||
@@ -100,10 +115,10 @@ export default function AccountProfile() {
       formInputs.phone !== userData.phone ||
       formInputs.email !== userData.email ||
       formInputs.currentPassword !== "" ||
-      formInputs.password !== ""
+      formInputs.password !== "";
 
-    setIsFormModified(hasChanged)
-  }, [formInputs, userData])
+    setIsFormModified(hasChanged);
+  }, [formInputs, userData]);
   const [errors, setErrors] = useState({
     firstName: "",
     lastName: "",
@@ -111,16 +126,16 @@ export default function AccountProfile() {
     email: "",
     currentPassword: "",
     password: "",
-  })
+  });
 
-  type HandleInputChange = (field: keyof FormInputs, value: string) => void
+  type HandleInputChange = (field: keyof FormInputs, value: string) => void;
 
   const handleInputChange: HandleInputChange = useCallback((field, value) => {
     setFormInputs((prev) => ({
       ...prev,
       [field]: value,
-    }))
-  }, [])
+    }));
+  }, []);
   const resetForm = useCallback(() => {
     setFormInputs({
       firstName: userData.firstName,
@@ -129,7 +144,7 @@ export default function AccountProfile() {
       email: userData.email,
       currentPassword: "",
       password: "",
-    })
+    });
     setErrors({
       firstName: "",
       lastName: "",
@@ -137,32 +152,35 @@ export default function AccountProfile() {
       email: "",
       currentPassword: "",
       password: "",
-    })
-  }, [userData])
+    });
+  }, [userData]);
   const saveAllChanges = useCallback(() => {
     try {
-      const dataToValidate = { ...formInputs } as Partial<typeof formInputs>
+      const dataToValidate = { ...formInputs } as Partial<typeof formInputs>;
       if (dataToValidate.password === "") {
-        delete dataToValidate.password
-        delete dataToValidate.currentPassword
+        delete dataToValidate.password;
+        delete dataToValidate.currentPassword;
       }
 
-      profileSchema.parse(dataToValidate)
+      profileSchema.parse(dataToValidate);
       // Validate that the current password matches the stored password
-      if (dataToValidate.currentPassword && dataToValidate.currentPassword !== profileData.currentPassword) {
-        throw new Error("Current password is incorrect")
+      if (
+        dataToValidate.currentPassword &&
+        dataToValidate.currentPassword !== profileData.currentPassword
+      ) {
+        throw new Error("Current password is incorrect");
       }
       setUserData({
         firstName: formInputs.firstName,
         lastName: formInputs.lastName,
         phone: formInputs.phone,
         email: formInputs.email,
-      })
+      });
       setFormInputs((prev) => ({
         ...prev,
         currentPassword: "",
         password: "",
-      }))
+      }));
       setErrors({
         firstName: "",
         lastName: "",
@@ -170,11 +188,13 @@ export default function AccountProfile() {
         email: "",
         currentPassword: "",
         password: "",
-      })
+      });
 
-      console.log("All changes saved successfully")
-      toast.success("Changes saved: Your profile has been updated successfully.")
-      return true
+      console.log("All changes saved successfully");
+      toast.success(
+        "Changes saved: Your profile has been updated successfully.",
+      );
+      return true;
     } catch (error) {
       if (error instanceof z.ZodError) {
         const newErrors = {
@@ -184,30 +204,30 @@ export default function AccountProfile() {
           email: "",
           currentPassword: "",
           password: "",
-        }
+        };
 
         error.errors.forEach((err) => {
           if (err.path && typeof err.path[0] === "string") {
-            const path = err.path[0] as keyof typeof newErrors
+            const path = err.path[0] as keyof typeof newErrors;
             if (path in newErrors) {
-              newErrors[path] = err.message
+              newErrors[path] = err.message;
             }
           }
-        })
+        });
 
-        setErrors(newErrors)
-        console.log("Validation errors:", newErrors)
+        setErrors(newErrors);
+        console.log("Validation errors:", newErrors);
       } else if (error instanceof Error) {
         // Handle custom error for incorrect password
         setErrors((prev) => ({
           ...prev,
           currentPassword: error.message,
-        }))
-        console.log("Error:", error.message)
+        }));
+        console.log("Error:", error.message);
       }
-      return false
+      return false;
     }
-  }, [formInputs, toast])
+  }, [formInputs, toast]);
 
   return (
     <div className="mx-auto flex max-w-7xl flex-col gap-4">
@@ -411,4 +431,3 @@ export default function AccountProfile() {
     </div>
   );
 }
-
