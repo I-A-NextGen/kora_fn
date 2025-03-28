@@ -39,7 +39,7 @@ const Page = () => {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="flex w-[100%] flex-col gap-6 lg:col-start-2 lg:max-w-[30rem]"
+      className="flex w-[100%] flex-col py-20 gap-6 lg:col-start-2 lg:max-w-[30rem]"
     >
       <h3 className="text-primary">Injira muri konti yawe</h3>
       <p className="leading-5 text-primary">
@@ -54,7 +54,9 @@ const Page = () => {
             {...register("phoneOrEmail")}
           />
           {errors.phoneOrEmail && (
-            <p className="text-red-500">{errors.phoneOrEmail.message}</p>
+            <p className="text-sm text-red-500">
+              {errors.phoneOrEmail.message}
+            </p>
           )}
         </label>
         <label className="flex flex-col">
@@ -65,7 +67,7 @@ const Page = () => {
             {...register("password")}
           />
           {errors.password && (
-            <p className="text-red-500">{errors.password.message}</p>
+            <p className="text-sm text-red-500">{errors.password.message}</p>
           )}
         </label>
         <p>

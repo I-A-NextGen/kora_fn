@@ -32,8 +32,7 @@ const Page = () => {
   }
 
   const onSubmit = (data: FormData) => 
-    toast.success(`Link is sent to your email!`)
-  };
+    toast.success(`Link is sent to your email!`);
 
   return (
     <div className="grid h-screen grid-cols-2">
@@ -72,5 +71,4 @@ const Page = () => {
     </div>
   );
 };
-
 export default Page;
