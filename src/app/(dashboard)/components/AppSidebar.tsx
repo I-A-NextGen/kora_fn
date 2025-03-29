@@ -22,13 +22,14 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from "@/components/ui/collapsible";
-import { Globe, MoreHorizontal, MoreVertical } from "lucide-react";
+import { Globe, LogOut, MoreHorizontal, MoreVertical } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import Logout from "@/components/Logout";
 
 export function AppSidebar() {
   const path = usePathname();
@@ -48,7 +49,7 @@ export function AppSidebar() {
         <h4 className="px-4 font-bold">KORA</h4>
       </SidebarHeader>
       <SidebarContent className="justify-between">
-        <SidebarGroup className="flex-row justify-between gap-2 group-data-[collapsible=icon]:hidden md:flex-col">
+        <SidebarGroup className="flex-row justify-between gap-3 group-data-[collapsible=icon]:hidden md:flex-col">
           {items
             .filter((item) => item.role === "*" || item.role === role)
             .map((item, index) => (
@@ -61,7 +62,7 @@ export function AppSidebar() {
                 key={index}
               >
                 <SidebarMenuButton
-                  className="inline-flex h-12 flex-col gap-0 md:flex-row md:gap-3 md:px-5"
+                  className="inline-flex h-[2.7rem] flex-col gap-0 md:flex-row md:gap-3 md:px-5"
                   asChild
                   isActive
                 >
@@ -86,7 +87,7 @@ export function AppSidebar() {
                 <p className="-mt-5 text-sm font-light">Contacts us anytime</p>
                 <Button
                   variant={"outline"}
-                  className="w-fit rounded-[.5rem] !text-sm text-primary z-20"
+                  className="z-20 w-fit rounded-[.5rem] !text-sm text-primary"
                   asChild
                   size={"sm"}
                 >
@@ -98,13 +99,13 @@ export function AppSidebar() {
         )}
 
         <SidebarGroup className="hidden border-t border-gray-300 group-data-[collapsible=icon]:hidden md:flex">
-          <div className="flex list-none flex-col gap-2">
+          <div className="flex list-none flex-col gap-3">
             <DropdownMenu>
               <DropdownMenuTrigger
                 asChild
                 className="hover:bg-primary hover:text-white"
               >
-                <SidebarMenuButton className="relative flex h-12 flex-col items-center gap-0 md:flex-row md:gap-3 md:px-5">
+                <SidebarMenuButton className="relative flex h-[2.7rem] flex-col items-center gap-0 md:flex-row md:gap-3 md:px-5">
                   <Globe />
                   <span className="text-xs font-normal tracking-tight md:text-[.9rem] md:font-medium md:tracking-normal">
                     Ikinyarwanda
@@ -137,7 +138,7 @@ export function AppSidebar() {
                 key={index}
               >
                 <SidebarMenuButton
-                  className="inline-flex h-12 gap-3 px-5"
+                  className="inline-flex h-[2.7rem] gap-3 px-5"
                   asChild
                   isActive
                 >
@@ -150,6 +151,11 @@ export function AppSidebar() {
                 </SidebarMenuButton>
               </SidebarMenuItem>
             ))}
+            <div
+              className={`flex cursor-pointer items-center rounded-md text-black duration-300 hover:bg-primary hover:text-white`}
+            >
+              <Logout />
+            </div>
           </div>
         </SidebarGroup>
       </SidebarContent>

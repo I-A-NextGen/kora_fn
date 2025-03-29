@@ -2,13 +2,14 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { LogIn, Pen } from "lucide-react";
 import Link from "next/link";
-import React from "react";
+
 import CarsSvg from "./CarsSvg";
 import { IoStarSharp } from "react-icons/io5";
+import GetStarted from "./GetStarted";
 
 const Hero = () => {
   return (
-    <div className="relative flex min-h-screen flex-col items-center justify-center overflow-clip bg-gradient-to-br from-primary/30 from-0% via-white via-40% to-primary/15 pt-20 px-[5%] lg:px-[10%]">
+    <div className="relative flex min-h-screen flex-col items-center justify-center overflow-clip bg-gradient-to-br from-primary/30 from-0% via-white via-40% to-primary/15 px-[5%] pt-20 lg:px-[10%]">
       <CarsSvg className="absolute left-0 top-0 -z-10" />
       <div className="flex flex-col items-center justify-center gap-12 text-center lg:w-2/3">
         <Badge
@@ -21,7 +22,7 @@ const Hero = () => {
         <h1 className="text-primary">
           Gerageza ubumenyi bwawe mu mategeko y&apos;umuhanda,
         </h1>
-        <div className="w-[95%] sm:w-[80%] flex flex-col gap-4">
+        <div className="flex w-[95%] flex-col gap-4 sm:w-[80%]">
           <p>
             Kwisonga mugutanga ubumenyi mumategeko y&apos;umuhanda no kugutegura
             gukora ikizamini
@@ -32,7 +33,7 @@ const Hero = () => {
             mu rwego rwo guteza imbere umutekano wo mu muhanda.
           </p>
         </div>
-        <div className="flex flex-col sm:flex-row gap-5">
+        <div className="flex flex-col gap-5 sm:flex-row">
           <Button
             variant={"outline"}
             size={"lg"}
@@ -44,17 +45,7 @@ const Hero = () => {
               <span>Iyandikishe</span>
             </Link>
           </Button>
-          <Button
-            variant={"default"}
-            className="h-12 cursor-pointer rounded-3xl bg-primary"
-            size={"lg"}
-            asChild
-          >
-            <Link href="/auth/login">
-              <Pen />
-              Tangira Isuzuma
-            </Link>
-          </Button>
+          <GetStarted />
         </div>
       </div>
     </div>

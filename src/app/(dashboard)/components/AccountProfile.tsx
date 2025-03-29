@@ -190,7 +190,6 @@ export default function AccountProfile() {
         password: "",
       });
 
-      console.log("All changes saved successfully");
       toast.success(
         "Changes saved: Your profile has been updated successfully.",
       );
@@ -216,14 +215,12 @@ export default function AccountProfile() {
         });
 
         setErrors(newErrors);
-        console.log("Validation errors:", newErrors);
       } else if (error instanceof Error) {
         // Handle custom error for incorrect password
         setErrors((prev) => ({
           ...prev,
           currentPassword: error.message,
         }));
-        console.log("Error:", error.message);
       }
       return false;
     }
@@ -231,7 +228,7 @@ export default function AccountProfile() {
 
   return (
     <div className="mx-auto flex max-w-7xl flex-col gap-4">
-      <DashHeader title="MY ACCOUNT" />
+      <DashHeader name={false} title="MY ACCOUNT" />
 
       <div className="rounded-2xl bg-white p-8 shadow-sm">
         <div className="flex min-h-[300] w-full items-center gap-4 text-center">
@@ -256,8 +253,8 @@ export default function AccountProfile() {
           <div className="min-w-[300] flex-1">
             <InfoCard title="Personal Information">
               <div className="flex w-full pl-5 text-base font-normal tracking-[-0.48]">
-                <div className="flex w-full flex-col gap-2 text-black">
-                  <Label htmlFor="firstName" className="flex flex-col gap-4">
+                <div className="flex w-full flex-col gap-4">
+                  <Label htmlFor="firstName" className="flex flex-col">
                     <span className="w-1/3">First Name</span>
                     <Input
                       id="firstName"
@@ -268,49 +265,48 @@ export default function AccountProfile() {
                       className={`border-gray-300 ${errors.firstName ? "border-red-500" : ""}`}
                     />
                   </Label>
-                  <div className="">
-                    <Label htmlFor="lastName" className="flex flex-col gap-4">
-                      <span className="w-1/3">Last Name</span>
-                      <Input
-                        id="lastName"
-                        value={formInputs.lastName}
-                        onChange={(e) =>
-                          handleInputChange("lastName", e.target.value)
-                        }
-                        className={`border-gray-300 ${errors.lastName ? "border-red-500" : ""}`}
-                      />
-                    </Label>
-                  </div>
-                  <div className="">
-                    <Label htmlFor="phone" className="flex flex-col gap-4">
-                      <span className="w-1/3">phone</span>
-                      <Input
-                        id="phone"
-                        value={formInputs.phone}
-                        onChange={(e) =>
-                          handleInputChange("phone", e.target.value)
-                        }
-                        className={`border-gray-300 ${errors.phone ? "border-red-500" : ""}`}
-                        type="tel"
-                      />
-                    </Label>
-                  </div>
+                  <Label htmlFor="lastName" className="flex flex-col">
+                    <span className="w-1/3">Last Name</span>
+                    <Input
+                      id="lastName"
+                      value={formInputs.lastName}
+                      onChange={(e) =>
+                        handleInputChange("lastName", e.target.value)
+                      }
+                      className={`border-gray-300 ${errors.lastName ? "border-red-500" : ""}`}
+                    />
+                  </Label>
+                  <Label htmlFor="phone" className="flex flex-col">
+                    <span className="w-1/3">phone</span>
+                    <Input
+                      id="phone"
+                      value={formInputs.phone}
+                      onChange={(e) =>
+                        handleInputChange("phone", e.target.value)
+                      }
+                      className={`border-gray-300 ${errors.phone ? "border-red-500" : ""}`}
+                      type="tel"
+                    />
+                  </Label>
                 </div>
               </div>
             </InfoCard>
 
             <InfoCard title="Email" className="max-md:mt-10">
               <div className="w-full pl-5 text-base font-normal tracking-[-0.48]">
-                <div className="mt-2">
-                  <Input
-                    id="email"
-                    type="email"
-                    value={formInputs.email}
-                    onChange={(e) => handleInputChange("email", e.target.value)}
-                    className={`border-gray-300 ${errors.email ? "border-red-500" : ""}`}
-                    placeholder="Enter email address"
-                  />
-                </div>
+                  <Label htmlFor="email" className="flex flex-col">
+                    <span className="w-1/3">Email</span>
+                    <Input
+                      id="email"
+                      type="email"
+                      value={formInputs.email}
+                      onChange={(e) =>
+                        handleInputChange("email", e.target.value)
+                      }
+                      className={`border-gray-300 ${errors.email ? "border-red-500" : ""}`}
+                      placeholder="Enter email address"
+                    />
+                  </Label>
               </div>
             </InfoCard>
           </div>

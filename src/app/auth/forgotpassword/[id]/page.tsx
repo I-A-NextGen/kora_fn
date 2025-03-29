@@ -4,17 +4,19 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { useParams } from "next/navigation";
-import Goback from "@/components/Goback";
 import { toast } from "sonner";
+import GoBack from "@/components/GoBack";
 
 const schema = z
   .object({
-    newPassword: z.string().min(6, "Ijambobanga rigomba kuba nibura inyuguti 6"),
+    newPassword: z
+      .string()
+      .min(6, "Ijambobanga rigomba kuba nibura inyuguti 6"),
     confirmPassword: z.string(),
   })
   .refine((data) => data.newPassword === data.confirmPassword, {
@@ -29,7 +31,7 @@ const Page = () => {
     formState: { errors },
   } = useForm({
     resolver: zodResolver(schema),
-    mode:"onBlur"
+    mode: "onBlur",
   });
 
   interface FormData {
@@ -38,7 +40,6 @@ const Page = () => {
   }
 
   const onSubmit = (data: FormData) => {
-    console.log(data.newPassword);
     toast.success(`ijambobanga ryahinduwe neza`);
   };
   const { id } = useParams();
@@ -46,7 +47,7 @@ const Page = () => {
   return (
     <div className="grid h-screen grid-cols-2">
       <div className="relative bg-gradient-to-r from-blue-700 to-transparent p-56">
-      <Goback className="absolute left-8 top-8 bg-blue-50 text-blue-700" />
+        <GoBack className="absolute left-8 top-8 bg-blue-50 text-blue-700" />
 
         <Image
           src={"/Traffic Light.png"}
@@ -62,7 +63,7 @@ const Page = () => {
       >
         <h1 className="text-blue-700">Hindura ijambobanga</h1>
         <p>Please create a new password</p>
-        
+
         <label className="flex flex-col gap-2">
           <span>Ijambobanga rishya</span>
           <Input

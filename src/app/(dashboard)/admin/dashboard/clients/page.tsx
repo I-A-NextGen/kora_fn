@@ -1,7 +1,7 @@
 "use client";
 
 import { Card } from "@/components/ui/card";
-import React, { useId, useState } from "react";
+import { useId, useState } from "react";
 import {
   Table,
   TableBody,

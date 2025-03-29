@@ -48,9 +48,4 @@ export const itemsfooter = [
     url: "#",
     icon: CircleHelp,
   },
-  {
-    label: "Log Out",
-    url: "#",
-    icon: LogOut,
-  },
 ];

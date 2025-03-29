@@ -3,7 +3,13 @@ import { useRouter } from "next/navigation";
 import { IoMdArrowRoundBack } from "react-icons/io";
 import { useEffect, useState } from "react";
 
-const Goback = ({ className }: { className?: string }) => {
+const GoBack = ({
+  className,
+  toHome,
+}: {
+  className?: string;
+  toHome?: boolean;
+}) => {
   const router = useRouter();
 
   const [isScrolled, setIsScrolled] = useState(false);
@@ -32,14 +38,17 @@ const Goback = ({ className }: { className?: string }) => {
         className +
         " z-10 flex cursor-pointer items-center gap-x-2 rounded-3xl py-2 font-medium text-primary hover:font-semibold"
       }
-      onClick={() => router.back()}
+      onClick={() => {
+        if (toHome) router.push("/");
+        else router.back();
+      }}
     >
       <div className="flex size-8 items-center justify-center rounded-full border border-blue-700/70 bg-white/60">
         <IoMdArrowRoundBack className="text-lg" />
       </div>
-      <span>Subira inyuma</span>
+      <span>Subira {toHome ? "ahabanza" : "inyuma"}</span>
     </div>
   );
 };
 
-export default Goback;
+export default GoBack;

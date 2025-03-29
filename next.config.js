@@ -6,14 +6,15 @@ import "./src/env.js";
 
 /** @type {import("next").NextConfig} */
 const config = {
-    images:{
-        remotePatterns:[
+    images: {
+        remotePatterns: [
             {
                 hostname: '*',
-                protocol:"https"
+                protocol: "https"
             }
         ]
-    }
+    },
+    reactStrictMode: false
 };
 
 export default config;

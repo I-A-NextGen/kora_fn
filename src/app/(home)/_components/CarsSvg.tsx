@@ -1,6 +1,4 @@
-import React from "react";
-
-const CarsSvg = ({className}:{className?:string}) => {
+const CarsSvg = ({ className }: { className?: string }) => {
   return (
     <div className={`svg ${className}`}>
       <svg

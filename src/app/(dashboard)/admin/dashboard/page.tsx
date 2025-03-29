@@ -1,6 +1,5 @@
 import { Car, ChevronDown, Clock, Flag } from "lucide-react";
 import Link from "next/link";
-import React from "react";
 import { Areachart } from "../../components/AreaChart";
 import { Card } from "@/components/ui/card";
 import {
@@ -51,7 +50,7 @@ const page = () => {
   ];
   return (
     <div className="flex min-h-screen flex-col gap-6">
-      <DashHeader title="Mwiriwe, Kalisa!" />
+      <DashHeader name title="Mwiriwe" />
       <div className="flex flex-col gap-5 xl:h-[32rem] xl:flex-row">
         <div className="flex w-full flex-col gap-4 rounded-2xl bg-white p-5 shadow-xl md:p-8 xl:w-2/3">
           <div>

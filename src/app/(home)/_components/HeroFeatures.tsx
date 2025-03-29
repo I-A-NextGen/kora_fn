@@ -1,4 +1,3 @@
-import React from "react";
 import { HowItWork } from "./HowItWork";
 
 const HeroFeatures = () => {
@@ -9,7 +8,7 @@ const HeroFeatures = () => {
         <p>Umutekano binyuze mu bumenyi.</p>
       </div>
       <div className="mt-20 flex flex-col gap-y-8 text-justify">
-        <div className="flex flex-wrap lg:justify-center gap-8 lg:flex-nowrap lg:gap-12">
+        <div className="flex flex-wrap gap-8 lg:flex-nowrap lg:justify-center lg:gap-12">
           <HowItWork
             num="01"
             title="Kiyandikisha"
@@ -27,7 +26,7 @@ const HeroFeatures = () => {
               amet pellentesque gravida quam. Sed elementum neque felis velit."
           />
         </div>
-        <div className="flex flex-wrap lg:justify-center gap-8 lg:flex-nowrap lg:gap-12">
+        <div className="flex flex-wrap gap-8 lg:flex-nowrap lg:justify-center lg:gap-12">
           <HowItWork
             num="03"
             title="Kiyandikisha"

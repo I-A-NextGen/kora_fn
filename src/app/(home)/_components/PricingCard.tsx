@@ -1,27 +1,36 @@
+"use client";
 import { Button } from "@/components/ui/button";
 import { Check } from "lucide-react";
 import Link from "next/link";
-import React from "react";
+import { useEffect } from "react";
+import { toast } from "sonner";
 
+const itemlist = [
+  {
+    icon: <Check />,
+    content: "Lorem ipsum dolor sit amet",
+  },
+  {
+    icon: <Check />,
+    content: "Lorem ipsum dolor sit amet",
+  },
+  {
+    icon: <Check />,
+    content: "Lorem ipsum dolor sit amet",
+  },
+  {
+    icon: <Check />,
+    content: "Lorem ipsum dolor sit amet",
+  },
+];
 const PricingCard = () => {
-  const itemlist = [
-    {
-      icon: <Check />,
-      content: "Lorem ipsum dolor sit amet",
-    },
-    {
-      icon: <Check />,
-      content: "Lorem ipsum dolor sit amet",
-    },
-    {
-      icon: <Check />,
-      content: "Lorem ipsum dolor sit amet",
-    },
-    {
-      icon: <Check />,
-      content: "Lorem ipsum dolor sit amet",
-    },
-  ];
+  useEffect(() => {
+    let timer: NodeJS.Timeout;
+    timer = setTimeout(() => {
+      toast.dismiss();
+    }, 3000);
+    return () => clearTimeout(timer);
+  }, []);
   return (
     <div className="flex w-80 flex-col items-center gap-6 rounded-2xl border border-black px-4 py-8 text-center">
       <h4>Ibizamini 2</h4>
@@ -32,7 +41,9 @@ const PricingCard = () => {
           return (
             <div key={i} className="inline-flex gap-2 text-green-500">
               {item.icon}
-              <span className="text-black text-sm lg:text-sm">{item.content}</span>
+              <span className="text-sm text-black lg:text-sm">
+                {item.content}
+              </span>
             </div>
           );
         })}

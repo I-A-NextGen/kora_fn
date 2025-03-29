@@ -3,8 +3,10 @@ import { Button } from "@/components/ui/button";
 import { LogIn, Pen } from "lucide-react";
 import { CgMenuRightAlt } from "react-icons/cg";
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { IoClose } from "react-icons/io5";
+import Logo from "@/components/Logo";
+import GetStarted from "./GetStarted";
 
 const Navbar = () => {
   const [width, setWidth] = useState(
@@ -50,12 +52,12 @@ const Navbar = () => {
       className={`${isScrolled ? "bg-[#cfdbfa] bg-opacity-50 py-3 backdrop-blur-lg" : "py-9"} fixed top-0 z-50 flex w-dvw items-end justify-between px-[5%] duration-300 sm:items-center lg:px-[10%]`}
       role="navigation"
     >
-      <span className="text-lg font-bold text-primary">LOGO</span>
+      <Logo link />
       <div onClick={() => setShowMenu((prevValue) => !prevValue)}>
         <CgMenuRightAlt className="cursor-pointer text-3xl md:hidden" />
       </div>
       <div
-        className={`${showMenu ? "flex" : "hidden"} fixed right-0 top-0 h-lvh w-[calc(100vw-20%)] animate-slideInToLeft flex-col items-center gap-4 gap-y-24 bg-[#e6ecfb] px-[5%] py-9 md:relative md:flex md:h-fit md:w-fit md:animate-none md:flex-row md:bg-transparent md:px-0 md:py-0 md:gap-8 lg:gap-32`}
+        className={`${showMenu ? "flex" : "hidden"} fixed right-0 top-0 h-lvh w-[calc(100vw-20%)] animate-slideInToLeft flex-col items-center gap-4 gap-y-24 bg-[#e6ecfb] px-[5%] py-9 md:relative md:flex md:h-fit md:w-fit md:animate-none md:flex-row md:gap-8 md:bg-transparent md:px-0 md:py-0 lg:gap-32`}
       >
         <div
           className="self-end"
@@ -65,21 +67,11 @@ const Navbar = () => {
         </div>
         <div className="mt-8 flex flex-col gap-x-6 gap-y-6 sm:mt-0 md:flex-row md:items-center lg:gap-x-10">
           <Link href="/">Ahabanza</Link>
-          <Link href="/">Amakuru</Link>
-          <Link href="/">Sobanukirwa</Link>
+          <Link href="/">Uko Bikora</Link>
+          <Link href="/">Ibiciro</Link>
         </div>
         <div className="flex gap-x-4">
-          <Button
-            variant={"default"}
-            className="h-12 cursor-pointer rounded-3xl bg-primary"
-            size={"lg"}
-            asChild
-          >
-            <Link href="/auth/login">
-              <Pen />
-              Tangira Isuzuma
-            </Link>
-          </Button>
+          <GetStarted />
         </div>
       </div>
     </nav>
