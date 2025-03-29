@@ -19,7 +19,7 @@ const GetStarted = () => {
           </div>
         </Button>
       </DialogTrigger>
-      <DialogContent className="flex overflow-hidden min-h-[31rem] max-w-[90%] flex-col items-center justify-center gap-16 sm:max-w-[30rem]">
+      <DialogContent className="flex min-h-[31rem] max-w-[90%] flex-col items-center justify-center gap-16 overflow-hidden sm:max-w-[30rem]">
         <div className="absolute top-0 z-0 size-full bg-gradient-to-br from-primary/35 from-0% via-primary/10 via-40% to-white" />
         <div className="z-10 mt-10 flex w-[90%] flex-col gap-10">
           <Button
