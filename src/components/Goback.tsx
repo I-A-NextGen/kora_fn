@@ -3,7 +3,7 @@ import { useRouter } from "next/navigation";
 import { IoMdArrowRoundBack } from "react-icons/io";
 import { useEffect, useState } from "react";
 
-const Goback = ({ className }: { className?: string }) => {
+const GoBack = ({ className }: { className?: string }) => {
   const router = useRouter();
 
   const [isScrolled, setIsScrolled] = useState(false);
@@ -42,4 +42,4 @@ const Goback = ({ className }: { className?: string }) => {
   );
 };
 
-export default Goback;
+export default GoBack;
