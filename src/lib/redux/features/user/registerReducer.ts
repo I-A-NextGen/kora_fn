@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { registerUser } from "../../actionCreators/authAction";
+import { userRegisterationAction } from "../../actionCreators/authAction";
 
 interface IRegistration {
   userRegistrationData: { message: string; data: unknown } | null;
@@ -21,13 +21,13 @@ const registerSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(registerUser.pending, (state) => {
+      .addCase(userRegisterationAction.pending, (state) => {
         state.loading = true;
         state.userRegistrationData = null;
         state.error = null;
       })
       .addCase(
-        registerUser.fulfilled,
+        userRegisterationAction.fulfilled,
         (state, action: PayloadAction<{ message: string; user: unknown }>) => {
           state.loading = false;
           state.userRegistrationData = {
@@ -38,13 +38,16 @@ const registerSlice = createSlice({
         },
       )
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      .addCase(registerUser.rejected, (state, action: PayloadAction<any>) => {
-        state.loading = false;
-        state.userRegistrationData = null;
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-        state.error = (action.payload.message ||
-          "Something went wrong!") as string;
-      });
+      .addCase(
+        userRegisterationAction.rejected,
+        (state, action: PayloadAction<any>) => {
+          state.loading = false;
+          state.userRegistrationData = null;
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+          state.error = (action.payload.message ||
+            "Hari Ibitagenze neza, ongera ugerageze!") as string;
+        },
+      );
   },
 });
 

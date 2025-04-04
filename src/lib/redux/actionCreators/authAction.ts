@@ -1,5 +1,6 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
+import { createAsyncThunk, isRejectedWithValue } from "@reduxjs/toolkit";
 import axios, { AxiosError, AxiosResponse } from "axios";
+import { IUser } from "../features/user/loginReducer";
 
 export type UserRegistrationData = {
   firstName: string;
@@ -9,7 +10,12 @@ export type UserRegistrationData = {
   confirmPassword: string;
 };
 
-export const registerUser = createAsyncThunk(
+export type UserLoginData = {
+  phoneNumber: string;
+  password: string;
+};
+
+export const userRegisterationAction = createAsyncThunk(
   "auth/sign-up",
   async (data: UserRegistrationData, { rejectWithValue }) => {
     try {
@@ -31,9 +37,82 @@ export const registerUser = createAsyncThunk(
       if (error instanceof AxiosError) {
         const status = error.response?.status;
         if (status === +"409") {
-          message = "Imyirondoro watanze, yarakoreshejwe.";
+          message = "Imyirondoro (Nimero ya telefone) watanze, yarakoreshejwe.";
         }
       }
+      return rejectWithValue({ message });
+    }
+  },
+);
+
+export const userLoginAction = createAsyncThunk(
+  "auth/login",
+  async (data: UserLoginData, { rejectWithValue }) => {
+    try {
+      const response: AxiosResponse<{
+        user: IUser;
+      }> = await axios.post(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/user/login`,
+        data,
+        { withCredentials: true },
+      );
+      return {
+        user: response.data.user,
+      };
+    } catch (error) {
+      let message = "Nimero ya telefone cyangwa ijambo banga ntago ari byo.";
+      if (
+        error instanceof AxiosError &&
+        (error.message === "Network Error" ||
+          error.response?.status.toString().startsWith("50"))
+      )
+        message =
+          "Kwinjira mursi konti yanyu ntago byakunze! Ongera ugerageze.";
+
+      return rejectWithValue({ message });
+    }
+  },
+);
+
+export const userLogoutAction = createAsyncThunk(
+  "auth/logout",
+  async (_, { rejectWithValue }) => {
+    try {
+      const response: AxiosResponse<{
+        user: IUser;
+      }> = await axios.post(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/user/logout`,
+        {},
+        { withCredentials: true },
+      );
+      return {
+        user: response.data.user,
+      };
+    } catch (error) {
+      let message = "Hari Ibitagenze neza, ongera ugerageze!";
+
+      return rejectWithValue({ message });
+    }
+  },
+);
+
+export const userAuthAction = createAsyncThunk(
+  "auth/me",
+  async (_, { rejectWithValue }) => {
+    try {
+      const response: AxiosResponse<{
+        message: string;
+        user: IUser;
+      }> = await axios.get(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/user/auth/me`,
+        { withCredentials: true },
+      );
+      return {
+        user: response.data.user,
+      };
+    } catch (error) {
+      let message = "Hari Ibitagenze neza, ongera ugerageze!";
+
       return rejectWithValue({ message });
     }
   },

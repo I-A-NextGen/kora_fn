@@ -7,6 +7,8 @@ import Image from "next/image";
 import { Clock } from "lucide-react";
 import { questions } from "@/lib/utils";
 import Link from "next/link";
+import Logo from "@/components/Logo";
+import NavBar from "./components/NavBar";
 
 export default function Quiz() {
   const [currentQuestion, setCurrentQuestion] = useState<number>(0);
@@ -53,25 +55,14 @@ export default function Quiz() {
 
   return (
     <div className="flex min-h-screen flex-col gap-16 bg-primary/10">
-      <div className="sticky top-0 flex h-20 items-center justify-between bg-white px-[5%]">
-        <Link href={"/"}>
-          <h3>KORA</h3>
-        </Link>
-        <span className="inline-flex items-center gap-4 rounded-2xl bg-blue-700 p-2 px-4 text-white">
-          <Clock />
-          <p>
-            igihe gisigaye: {Math.floor(timeLeft / 60)}:
-            {(timeLeft % 60).toString().padStart(2, "0")}
-          </p>
-        </span>
-      </div>
-      <div className="grid h-[720px] place-items-center">
-        <Card className="max-w-[38rem] p-4 py-5">
-          <CardHeader>
-            <CardTitle className="-mb-4 text-gray-500">
+      <NavBar timeLeft={timeLeft} />
+      <div className="grid min-h-[calc(100svh-4rem)] place-items-center py-10">
+        <Card className="max-w-[38rem] border-none px-8 py-10 shadow-2xl">
+          <CardHeader className="mb-5 p-0">
+            <CardTitle className="text-gray-500">
               {showResult
                 ? "Ikizamini kirarangiye!"
-                : `Ikibazo ${currentQuestion + 1}`}
+                : `Ikibazo cya ${currentQuestion + 1}`}
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -85,7 +76,7 @@ export default function Quiz() {
                 </Button>
               </div>
             ) : (
-              <div className="flex flex-col gap-8">
+              <div className="flex flex-col gap-6">
                 {questions[currentQuestion] &&
                 typeof questions[currentQuestion].question === "string" ? (
                   <p className="font-medium">
@@ -114,7 +105,7 @@ export default function Quiz() {
                   {questions[currentQuestion]?.options.map((option, index) => (
                     <button
                       key={index}
-                      className={`flex w-full items-center rounded-sm border border-black/50 p-3 ${
+                      className={`flex w-full items-center rounded-sm border border-black/50 px-5 py-3 ${
                         selectedAnswer === option.text
                           ? "bg-blue-700/25"
                           : "bg-white"

@@ -1,6 +1,6 @@
 import { Clock, Flag } from "lucide-react";
 import Link from "next/link";
-import React from "react";
+
 import {
   Table,
   TableBody,
@@ -21,12 +21,12 @@ const page = () => {
         <DashHeader title="EXAMS" />
         <div className="flex flex-col gap-5 lg:flex-row">
           <StartExamCard />
-          <div className="flex h-44 items-end justify-center gap-6 md:gap-14 rounded-2xl bg-white p-8 shadow-2xl xl:w-3/5">
+          <div className="flex h-44 items-end justify-center gap-6 rounded-2xl bg-white p-8 shadow-2xl md:gap-14 xl:w-3/5">
             <div className="flex flex-col gap-3">
-              <h1 className=" text-[3.5rem] font-semibold md:text-[5rem]">
+              <h1 className="text-[3.5rem] font-semibold md:text-[5rem]">
                 100
               </h1>
-              <p className="font-medium tracking-tight text-gray-500 leading-3">
+              <p className="font-medium leading-3 tracking-tight text-gray-500">
                 Imyitozo wakoze
               </p>
             </div>

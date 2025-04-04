@@ -1,7 +1,8 @@
+"use client";
 import { Clock, Flag } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+
 import DashHeader from "../../components/DashHeader";
 import StartExamCard from "../../components/StartExamCard";
 import { Button } from "@/components/ui/button";
@@ -9,7 +10,7 @@ import { Button } from "@/components/ui/button";
 const page = () => {
   return (
     <div className="flex min-h-screen flex-col gap-3 md:gap-8">
-      <DashHeader title="Mwiriwe, Kalisa!" />
+      <DashHeader name={true} title="Mwiriwe" />
       <div className="flex flex-col gap-5 xl:flex-row">
         <div className="flex flex-wrap gap-x-3 gap-y-5 md:flex-wrap md:gap-5 lg:flex-nowrap xl:w-2/3 xl:flex-nowrap">
           <div className="relative flex h-48 min-w-[48.9%] flex-1 items-end gap-4 overflow-hidden rounded-2xl bg-white px-7 py-6 shadow-lg sm:flex-row sm:px-5 md:h-52 md:min-w-[48.5%] md:px-8 md:shadow-2xl lg:h-60 xl:w-1/2">

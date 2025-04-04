@@ -1,7 +1,7 @@
 "use client";
 
 import { Bell, Box, CircleUserRound, CircleUserRoundIcon } from "lucide-react";
-import React from "react";
+
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -19,6 +19,9 @@ import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { LogOut } from "lucide-react";
 import PlanAndUpgrade from "./PlanAndUpgrade";
+import Logo from "@/components/Logo";
+import Logout from "@/components/Logout";
+import { useAppSelector } from "@/lib/redux/store";
 
 const Navbar = () => {
   const [notifications, setNotifications] = useState(initialNotifications);
@@ -26,6 +29,7 @@ const Navbar = () => {
   const path = usePathname();
   const role = path.split("/")[1];
 
+  const { user } = useAppSelector((state) => state.userAuth);
   const handleMarkAllAsRead = () => {
     setNotifications(
       notifications.map((notification) => ({
@@ -45,9 +49,9 @@ const Navbar = () => {
   };
 
   return (
-    <div className="sticky left-0 -top-[1px] z-50 flex h-16 w-full items-center justify-between gap-2 border-b border-gray-300 bg-white px-[4%] md:h-20 md:justify-end lg:gap-32">
+    <div className="sticky -top-[1px] left-0 z-50 flex h-16 w-full items-center justify-between gap-2 border-b border-gray-300 bg-white px-[4%] md:h-20 md:justify-end lg:gap-32">
       <div className="md:hidden">
-        <p className="text-xl font-bold text-primary md:text-2xl">KORA</p>
+        <Logo link={true} />
       </div>
       <div className="flex items-center justify-between gap-8 lg:gap-32">
         {role === "client" && (
@@ -122,42 +126,39 @@ const Navbar = () => {
                 {/* <div className="relative size-10 overflow-hidden rounded-full ring-1 ring-background">
               <Image src="/profile.jpg" alt="Friend 03" fill />
             </div> */}
-                <div className="hidden flex-col justify-center md:flex">
-                  <span className="text-start font-medium leading-4 text-foreground">
-                    Don aime
+                <div className="hidden w-28 flex-col items-start justify-center md:flex">
+                  <span className="line-clamp-1 text-start font-medium capitalize leading-4 text-foreground">
+                    {(user?.firstName + " " + user?.lastName).toLowerCase()}
                   </span>
-                  <small className="font-light leading-4">
-                    mdonavan33@gm...
+                  <small className="line-clamp-1 font-light leading-4">
+                    {user?.phoneNumber}
                   </small>
                 </div>
               </div>
             </PopoverTrigger>
             <PopoverContent className="w-64 pb-8 pt-10 shadow-2xl">
-              <nav className="h-44">
-                <ul className="list m-0 flex h-full flex-col justify-between">
-                  <div className="flex flex-col gap-y-1">
+              <nav className="min-h-44">
+                <ul className="list m-0 flex h-full flex-col justify-between gap-8">
+                  <div className="flex flex-col gap-y-2">
                     <li>
                       <Link
                         href={`/${role}/dashboard/account`}
-                        className="flex items-center gap-2 rounded-md py-[.65rem] pl-5 hover:bg-primary hover:text-white"
+                        className="flex h-[2.7rem] items-center gap-2 rounded-md pl-5 hover:bg-primary hover:text-white"
                       >
                         <CircleUserRoundIcon size={22} />
                         <span>My Account</span>
                       </Link>
                     </li>
 
-                    <li>
-                      <Link
-                        href="#"
-                        className="flex items-center gap-2 rounded-md py-[.65rem] pl-5 hover:bg-primary hover:text-white"
-                      >
-                        <LogOut size={22} />
-                        <span>Log Out</span>
-                      </Link>
+                    <li className="flex h-[2.7rem] items-center gap-2 rounded-md hover:bg-primary hover:text-white">
+                      <Logout
+                        iconSize={22}
+                        className="text-sm md:text-base md:font-normal"
+                      />
                     </li>
                   </div>
                   <li className="flex items-center justify-between overflow-hidden rounded-3xl border-2 border-primary pl-4">
-                    <PlanAndUpgrade className="rounded-3xl flex" />
+                    <PlanAndUpgrade className="flex rounded-3xl" />
                   </li>
                 </ul>
               </nav>

@@ -1,4 +1,6 @@
 import { type Metadata } from "next";
+import AuthWrapper from "../../components/AuthWrapper";
+import RoleWrapper from "../../components/RoleWrapper";
 
 export const metadata: Metadata = {
   title: "Kora",
@@ -7,5 +9,9 @@ export const metadata: Metadata = {
 };
 
 export default function Layout({ children }: { children: React.ReactNode }) {
-  return <section className="w-full">{children}</section>;
+  return (
+    <section className="w-full">
+      <RoleWrapper >{children}</RoleWrapper>
+    </section>
+  );
 }

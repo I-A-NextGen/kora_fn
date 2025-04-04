@@ -3,37 +3,43 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { toast } from "sonner";
 import { useAppDispatch, useAppSelector } from "@/lib/redux/store";
 import {
-  registerUser,
+  userRegisterationAction,
   UserRegistrationData,
 } from "@/lib/redux/actionCreators/authAction";
 import { userRegistrationReset } from "@/lib/redux/features/user/registerReducer";
 import { PulseLoader } from "react-spinners";
-import { redirect } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
+import { Eye, EyeOff } from "lucide-react";
 
 const schema = z
   .object({
-    firstName: z.string().min(3, "Izina rigomba kuba nibura inyuguti 3"),
-    lastName: z.string(),
+    firstName: z.string().trim().min(3, "Izina rigomba kuba nibura inyuguti 3"),
+    lastName: z.string().trim().min(3, "Izina rigomba kuba nibura inyuguti 3"),
     phoneNumber: z
       .string()
       .regex(/^\d{10}$/, "Nomero ya telefoni igomba kugira imibare 10"),
-    password: z.string().min(6, "Ijambobanga rigomba kugira inyuguti nibura 6"),
-    confirmPassword: z
+    password: z
       .string()
+      .regex(/^\S.*\S$/, "Imyanya imbere ninyuma ntabwo yemewe")
+      .min(6, "Ijambobanga rigomba kugira inyuguti nibura 6"),
+    confirmPassword: z.string(),
   })
   .refine((data) => data.password === data.confirmPassword, {
     message: "Ijambo banga ntago risa ni rya mbere.",
-    path :["confirmPassword"],
+    path: ["confirmPassword"],
   });
 
 const Page = () => {
+  const [showPassword, setShowPassword] = useState<boolean>(false);
+  const [showConfirmPassword, setShowConfirmPassword] =
+    useState<boolean>(false);
   const {
     register,
     handleSubmit,
@@ -47,12 +53,13 @@ const Page = () => {
     userRegistrationData,
   } = useAppSelector((state) => state.userRegistration);
 
+  const route = useRouter();
   useEffect(() => {
     if (userRegistrationData) {
       reset();
       toast.success(userRegistrationData.message);
       dispatch(userRegistrationReset());
-      redirect('/auth/login')
+      route.push("/auth/login");
     }
     if (userRegistrationError) {
       toast.error(userRegistrationError);
@@ -61,13 +68,13 @@ const Page = () => {
   }, [userRegistrationData, userRegistrationError]);
 
   const onSubmit = async (data: UserRegistrationData) => {
-    await dispatch(registerUser(data));
+    await dispatch(userRegisterationAction(data));
   };
 
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="flex w-[100%] flex-col gap-6 py-32 lg:col-start-2 g-red-200 lg:max-w-[28rem]"
+      className="g-red-200 flex w-[100%] flex-col gap-6 py-32 lg:col-start-2 lg:max-w-[29rem]"
     >
       <h3 className="text-primary">Kwiyandikisha</h3>
       <p className="leading-5 text-primary">
@@ -92,6 +99,9 @@ const Page = () => {
             {...register("lastName")}
             placeholder="Andika izina ryawe ry'umuryango"
           />
+          {errors.lastName && (
+            <p className="text-xs text-red-400">{errors.lastName.message}</p>
+          )}
         </label>
         <label className="flex flex-col">
           <span>Nomero ya telefone</span>
@@ -105,24 +115,54 @@ const Page = () => {
           )}
         </label>
 
-        <label className="flex flex-col">
+        <label className="relative flex flex-col">
           <span>Ijambobanga</span>
           <Input
-            type="password"
+            type={showPassword ? "text" : "password"}
             {...register("password")}
             placeholder="Andika ijambobanga"
           />
+          {showPassword ? (
+            <EyeOff
+              size={22}
+              strokeWidth={1.4}
+              onClick={() => setShowPassword(false)}
+              className="absolute right-4 top-[1.9rem] cursor-pointer text-gray-500 md:top-[2.2rem]"
+            />
+          ) : (
+            <Eye
+              size={22}
+              strokeWidth={1.4}
+              onClick={() => setShowPassword(true)}
+              className="absolute right-4 top-[1.9rem] cursor-pointer text-gray-500 md:top-[2.2rem]"
+            />
+          )}
           {errors.password && (
             <p className="text-xs text-red-500">{errors.password.message}</p>
           )}
         </label>
-        <label className="flex flex-col">
+        <label className="relative flex flex-col">
           <span>Emeza Ijambobanga</span>
           <Input
-            type="password"
+            type={showConfirmPassword ? "text" : "password"}
             {...register("confirmPassword")}
             placeholder="Subiramo ijambobanga"
           />
+          {showConfirmPassword ? (
+            <EyeOff
+              size={22}
+              strokeWidth={1.4}
+              onClick={() => setShowConfirmPassword(false)}
+              className="absolute right-4 top-[1.9rem] cursor-pointer text-gray-500 md:top-[2.2rem]"
+            />
+          ) : (
+            <Eye
+              size={22}
+              strokeWidth={1.4}
+              onClick={() => setShowConfirmPassword(true)}
+              className="absolute right-4 top-[1.9rem] cursor-pointer text-gray-500 md:top-[2.2rem]"
+            />
+          )}
           {errors.confirmPassword && (
             <p className="text-xs text-red-500">
               {errors.confirmPassword.message}
