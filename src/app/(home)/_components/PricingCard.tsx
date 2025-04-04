@@ -33,7 +33,7 @@ const PricingCard = ({amount,exams,durationDays}:PricingCardProps) => {
     <div className="flex w-80 flex-col items-center gap-6 rounded-2xl border border-black px-4 py-8 text-center">
       <h4>Ibizamini {exams}</h4>
       <h2 className="font-semibold text-blue-700">{amount} RWF</h2>
-      <h5 className="font-semibold">{durationDays} minsi</h5>
+      <h5 className="font-semibold">iminsi {durationDays}</h5>
       <div className="size-fit">
         {itemlist.map((item, i) => {
           return (
