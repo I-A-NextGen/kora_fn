@@ -2,40 +2,38 @@
 import { Button } from "@/components/ui/button";
 import { Check } from "lucide-react";
 import Link from "next/link";
-import { useEffect } from "react";
-import { toast } from "sonner";
+import React from "react";
 
-const itemlist = [
-  {
-    icon: <Check />,
-    content: "Lorem ipsum dolor sit amet",
-  },
-  {
-    icon: <Check />,
-    content: "Lorem ipsum dolor sit amet",
-  },
-  {
-    icon: <Check />,
-    content: "Lorem ipsum dolor sit amet",
-  },
-  {
-    icon: <Check />,
-    content: "Lorem ipsum dolor sit amet",
-  },
-];
-const PricingCard = () => {
-  useEffect(() => {
-    let timer: NodeJS.Timeout;
-    timer = setTimeout(() => {
-      toast.dismiss();
-    }, 3000);
-    return () => clearTimeout(timer);
-  }, []);
+interface PricingCardProps {
+  amount: number;
+  exams: number;
+  durationDays: number;
+}
+
+const PricingCard = ({amount,exams,durationDays}:PricingCardProps) => {
+  const itemlist = [
+    {
+      icon: <Check />,
+      content: "Lorem ipsum dolor sit amet",
+    },
+    {
+      icon: <Check />,
+      content: "Lorem ipsum dolor sit amet",
+    },
+    {
+      icon: <Check />,
+      content: "Lorem ipsum dolor sit amet",
+    },
+    {
+      icon: <Check />,
+      content: "Lorem ipsum dolor sit amet",
+    },
+  ];
   return (
     <div className="flex w-80 flex-col items-center gap-6 rounded-2xl border border-black px-4 py-8 text-center">
-      <h4>Ibizamini 2</h4>
-      <p>Lorem ipsum dolor sit amet consecte</p>
-      <h2 className="font-semibold">300 RWF</h2>
+      <h4>Ibizamini {exams}</h4>
+      <h2 className="font-semibold text-blue-700">{amount} RWF</h2>
+      <h5 className="font-semibold">{durationDays} minsi</h5>
       <div className="size-fit">
         {itemlist.map((item, i) => {
           return (
