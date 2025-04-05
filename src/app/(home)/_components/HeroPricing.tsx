@@ -2,13 +2,69 @@ import React from 'react'
 import PricingCard from './PricingCard'
 
 const examPlans = [
-  { amount: 300, exams: 2, durationDays: 1 },
-  { amount: 500, exams: 5, durationDays: 3 },
-  { amount: 1000, exams: 12, durationDays: 7 },
-  { amount: 2000, exams: 25, durationDays: 30 },
-  { amount: 5000, exams: 60, durationDays: 75 },
-  { amount: 10000, exams: 1000000, durationDays: 730 },
+  {
+    amount: 300,
+    exams: 2,
+    durationDays: 1,
+    features: [
+      "Kugerageza ibizamini bibiri by'icyiciro kimwe",
+      "Gufungura byihuse nta kwiyandikisha",
+      "Inkunga yihuse ku bibazo",
+    ],
+  },
+  {
+    amount: 500,
+    exams: 5,
+    durationDays: 3,
+    features: [
+      "Ibizamini bitanu bitandukanye",
+      "Igihe gihagije cyo kwitoza",
+      "Gusubiramo ibisubizo nyuma y'ikizamini",
+    ],
+  },
+  {
+    amount: 1000,
+    exams: 12,
+    durationDays: 7,
+    features: [
+      "Ibizamini byinshi byo kwitoza",
+      "Gufata amanota no kugereranya uko uhagaze",
+      "Kwerekwa aho wakosheje no guhabwa inama",
+    ],
+  },
+  {
+    amount: 2000,
+    exams: 25,
+    durationDays: 30,
+    features: [
+      "Kwiga igihe kirekire",
+      "Kwinjira mu matsinda yo gusubiranamo",
+      "Kwiga no gukosorwa n'abarezi b'inzobere",
+    ],
+  },
+  {
+    amount: 5000,
+    exams: 60,
+    durationDays: 75,
+    features: [
+      "Ibizamini byinshi birimo iby’umwihariko",
+      "Kwiga amasomo yihariye ajyanye n’ibizamini",
+      "Kwinjira muri forum y'abanyeshuri",
+    ],
+  },
+  {
+    amount: 10000,
+    exams: 1000000,
+    durationDays: 730,
+    features: [
+      "Uburyo butagira umupaka bwo kwitoza",
+      "Kwiga imyaka 2 yose ukoresheje urubuga",
+      "Amahirwe yo kubona seritifika yo kurangiza icyiciro",
+      "Kugira umujyanama wigenga w'amasomo",
+    ],
+  },
 ];
+
 
 const HeroPricing = () => {
   return (
@@ -24,6 +80,7 @@ const HeroPricing = () => {
             amount={plan.amount}
             exams={plan.exams}
             durationDays={plan.durationDays}
+            features={plan.features}
           />
         ))}
       </div>
