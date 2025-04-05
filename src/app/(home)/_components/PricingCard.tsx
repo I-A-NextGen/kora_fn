@@ -7,9 +7,10 @@ interface PricingCardProps {
   amount: number;
   exams: number;
   durationDays: number;
+  features: string[];
 }
 
-const PricingCard = ({amount,exams,durationDays}:PricingCardProps) => {
+const PricingCard = ({amount,exams,durationDays,features}:PricingCardProps) => {
   const itemlist = [
     {
       icon: <Check />,
@@ -29,22 +30,24 @@ const PricingCard = ({amount,exams,durationDays}:PricingCardProps) => {
     },
   ];
   return (
-    <div className="flex w-80 flex-col items-center gap-6 rounded-2xl border border-black px-4 py-8 text-center">
-      <h4>Ibizamini {exams}</h4>
+    <div className="flex w-96 flex-col items-center gap-6 rounded-2xl border border-black px-4 lg:px-8 py-8 text-center">
+      <h4>{exams > 100000 ?<>Ibizamini bidashira mu myaka ibiri</>:<>Ibizamini {exams}</>}</h4>
       <h2 className="font-semibold text-blue-700">{amount} RWF</h2>
-      <h5 className="font-semibold">iminsi {durationDays}</h5>
+      <h5 className="font-semibold">mu minsi {durationDays}</h5>
       <div className="size-fit">
-        {itemlist.map((item, i) => {
-          return (
-            <div key={i} className="inline-flex gap-2 text-green-500">
-              {item.icon}
-              <span className="text-black text-sm lg:text-sm">{item.content}</span>
-            </div>
-          );
-        })}
+        
+      </div>
+      
+      <div className="flex w-full flex-col gap-2">
+        {features.map((item, index) => (
+          <div key={index} className="flex items-start gap-2">
+            <Check className="text-primary" />
+            <p className="text-left">{item}</p>
+          </div>
+        ))}
       </div>
       <Button size={"lg"} className="h-12 rounded-3xl bg-primary">
-        <Link href={"/"}>Tangira Isuzuma</Link>
+        <Link href={"/"}>Ishyura Isuzuma</Link>
       </Button>
     </div>
   );
