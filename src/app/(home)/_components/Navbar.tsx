@@ -58,6 +58,7 @@ const Navbar = () => {
       </div>
       <div
         className={`${showMenu ? "flex" : "hidden"} fixed right-0 top-0 h-lvh w-[calc(100vw-20%)] animate-slideInToLeft flex-col items-center gap-4 gap-y-24 bg-[#e6ecfb] px-[5%] py-9 md:relative md:flex md:h-fit md:w-fit md:animate-none md:flex-row md:gap-8 md:bg-transparent md:px-0 md:py-0 lg:gap-32`}
+        className={`${showMenu ? "flex" : "hidden"} fixed right-0 top-0 h-lvh w-[calc(100vw-20%)] animate-slideInToLeft flex-col items-center gap-4 gap-y-24 bg-[#e6ecfb] px-[5%] py-9 md:relative md:flex md:h-fit md:w-fit md:animate-none md:flex-row md:gap-8 md:bg-transparent md:px-0 md:py-0 lg:gap-32`}
       >
         <div
           className="self-end"
