@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   title: "Umusamariya ",
   description: "Umutekano binyuze mu bumenyi.",
   keywords: ["Umusamariya", "ibizamini", "ibizamini by'ikoranabuhanga"],
-  icons: [{ rel: "icon", url: "/favi.png" }],
+  icons: [{ rel: "icon", url: "/favi (1).png" }],
 };
 
 export default function RootLayout({

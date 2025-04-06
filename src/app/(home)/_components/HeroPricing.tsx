@@ -8,7 +8,6 @@ const examPlans = [
     durationDays: 1,
     features: [
       "Kugerageza ibizamini bibiri by'icyiciro kimwe",
-      "Gufungura byihuse nta kwiyandikisha",
       "Inkunga yihuse ku bibazo",
     ],
   },
@@ -38,7 +37,6 @@ const examPlans = [
     durationDays: 30,
     features: [
       "Kwiga igihe kirekire",
-      "Kwinjira mu matsinda yo gusubiranamo",
       "Kwiga no gukosorwa n'abarezi b'inzobere",
     ],
   },
