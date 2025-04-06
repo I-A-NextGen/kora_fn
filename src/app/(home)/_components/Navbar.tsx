@@ -67,7 +67,7 @@ const Navbar = () => {
         </div>
         <div className="mt-8 flex flex-col gap-x-6 gap-y-6 sm:mt-0 md:flex-row md:items-center lg:gap-x-10">
           <Link href="/">Ahabanza</Link>
-          <Link href="/">Uko Bikora</Link>
+          <Link className="text-nowrap" href="/">Uko Bikora</Link>
           <Link href="/">Ibiciro</Link>
         </div>
         <div className="flex gap-x-4">

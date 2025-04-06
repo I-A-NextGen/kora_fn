@@ -7,7 +7,7 @@ import { GeistSans } from "geist/font/sans";
 import { type Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Umusamariya ",
+  title: "UMUSAMARIYA",
   description: "Umutekano binyuze mu bumenyi.",
   keywords: ["Umusamariya", "ibizamini", "ibizamini by'ikoranabuhanga"],
   icons: [{ rel: "icon", url: "/favi (1).png" }],

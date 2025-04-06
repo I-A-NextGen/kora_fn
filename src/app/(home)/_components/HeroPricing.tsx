@@ -1,5 +1,5 @@
-import React from 'react'
-import PricingCard from './PricingCard'
+import React from "react";
+import PricingCard from "./PricingCard";
 
 const examPlans = [
   {
@@ -7,11 +7,10 @@ const examPlans = [
     exams: 2,
     durationDays: 1,
     features: [
-      "Kugerageza ibizamini bibiri by'icyiciro kimwe",
-      "Inkunga yihuse ku bibazo",
-      "Ikiguzi cyangwa ibisubizo bikurikiranwa",
-      "Kwerekana ibisubizo by'ibizamini",
-      "Guhitamo gukora ibizamini byibyapa gusa",
+      { check: false, value: "Igihe gihagije cyo kwitoza" },
+      { check: true, value: "Kwerekana ibisubizo by'ibizamini" },
+      { check: true, value: "Guhitamo gukora ibizamini byibyapa gusa" },
+      { check: false, value: "Ubufasha bwa mwalimu" },
     ],
   },
   {
@@ -19,11 +18,13 @@ const examPlans = [
     exams: 5,
     durationDays: 3,
     features: [
-      "Ibizamini bitanu bitandukanye",
-      "Igihe gihagije cyo kwitoza",
-      "Gusubiramo ibisubizo nyuma y'ikizamini",
-      "Kwerekana ibisubizo by'ibizamini",
-      "Guhitamo gukora ibizamini byibyapa gusa",
+      { check: false, value: "Igihe gihagije cyo kwitoza" },
+      {
+        check: true,
+        value: "Kubona ikigereranyo cy`amahirwe yawe yo gutsinda",
+      },
+      { check: true, value: "Kwerekana ibisubizo by'ibizamini" },
+      { check: true, value: "Guhitamo gukora ibizamini byibyapa gusa" },
     ],
   },
   {
@@ -31,10 +32,13 @@ const examPlans = [
     exams: 12,
     durationDays: 7,
     features: [
-      "Ibizamini byinshi byo kwitoza",
-      "Gufata amanota no kugereranya uko uhagaze",
-      "Kwerekana ibisubizo by'ibizamini",
-      "Guhitamo gukora ibizamini byibyapa gusa",
+      { check: false, value: "Igihe gihagije cyo kwitoza" },
+      {
+        check: true,
+        value: "Kubona ikigereranyo cy`amahirwe yawe yo gutsinda",
+      },
+      { check: true, value: "Kwerekana ibisubizo by'ibizamini" },
+      { check: true, value: "Guhitamo gukora ibizamini byibyapa gusa" },
     ],
   },
   {
@@ -42,10 +46,13 @@ const examPlans = [
     exams: 25,
     durationDays: 30,
     features: [
-      "Kwiga igihe kirekire",
-      "Gufata amanota no kugereranya uko uhagaze",
-      "Kwerekana ibisubizo by'ibizamini",
-      "Guhitamo gukora ibizamini byibyapa gusa",
+      { check: true, value: "Igihe gihagije cyo kwitoza" },
+      {
+        check: true,
+        value: "Kubona ikigereranyo cy`amahirwe yawe yo gutsinda",
+      },
+      { check: true, value: "Kwerekana ibisubizo by'ibizamini" },
+      { check: true, value: "Guhitamo gukora ibizamini byibyapa gusa" },
     ],
   },
   {
@@ -53,10 +60,13 @@ const examPlans = [
     exams: 60,
     durationDays: 75,
     features: [
-      "Ibizamini byinshi birimo iby’umwihariko",
-      "Kwinjira muri forum y'abanyeshuri",
-      "Kwerekana ibisubizo by'ibizamini",
-      "Guhitamo gukora ibizamini byibyapa gusa",
+      { check: true, value: "Igihe gihagije cyo kwitoza" },
+      {
+        check: true,
+        value: "Kubona ikigereranyo cy`amahirwe yawe yo gutsinda",
+      },
+      { check: true, value: "Kwerekana ibisubizo by'ibizamini" },
+      { check: true, value: "Guhitamo gukora ibizamini byibyapa gusa" },
     ],
   },
   {
@@ -64,19 +74,24 @@ const examPlans = [
     exams: 1000000,
     durationDays: 730,
     features: [
-      "Uburyo butagira umupaka bwo kwitoza",
-      "Gufata amanota no kugereranya uko uhagaze",
-      "Kwiga imyaka 2 yose ukoresheje urubuga",
-        "Kwerekana ibisubizo by'ibizamini",
-      "Guhitamo gukora ibizamini byibyapa gusa",
+      {
+        check: true,
+        value: "Igihe gihagije cy'imyaka 2 yose ukoresheje urubuga",
+      },
+      {
+        check: true,
+        value: "Kubona ikigereranyo cy`amahirwe yawe yo gutsinda",
+      },
+      { check: true, value: "Kwerekana ibisubizo by'ibizamini" },
+      { check: true, value: "Guhitamo gukora ibizamini byibyapa gusa" },
+      { check: true, value: "Ubufasha bwa mwalimu" },
     ],
   },
 ];
 
-
 const HeroPricing = () => {
   return (
-    <div className="min-h-screen bg-primary/10 px-[5%] lg:px-[10%] py-32">
+    <div className="min-h-screen bg-primary/10 px-[5%] py-32 lg:px-[10%]">
       <div className="flex flex-col items-center justify-center gap-1">
         <h2>Ibiciro</h2>
         <p>Umutekano binyuze mu bumenyi.</p>
@@ -94,6 +109,6 @@ const HeroPricing = () => {
       </div>
     </div>
   );
-}
+};
 
-export default HeroPricing
+export default HeroPricing;
