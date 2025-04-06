@@ -5,7 +5,7 @@ const Logo = ({ link }: { link: boolean }) => {
   if (link) {
     return (
       <Link href={"/"}>
-        <div className="relative h-10 w-32">
+        <div className="relative h-8 w-80">
           <Image
             src={"/Umusamariyadark.png"}
             alt="logo"
@@ -17,16 +17,14 @@ const Logo = ({ link }: { link: boolean }) => {
     );
   }
   return (
-    <Link href={"/"}>
-      <div className="relative h-10 w-32">
-        <Image
-          src={"/Umusamariyadark.png"}
-          alt="logo"
-          fill
-          className="object-contain"
-        />
-      </div>
-    </Link>
+    <div className="relative h-8 w-80">
+      <Image
+        src={"/Umusamariyadark.png"}
+        alt="logo"
+        fill
+        className="object-contain"
+      />
+    </div>
   );
 };
 
