@@ -9,6 +9,9 @@ const examPlans = [
     features: [
       "Kugerageza ibizamini bibiri by'icyiciro kimwe",
       "Inkunga yihuse ku bibazo",
+      "Ikiguzi cyangwa ibisubizo bikurikiranwa",
+      "Kwerekana ibisubizo by'ibizamini",
+      "Guhitamo gukora ibizamini byibyapa gusa",
     ],
   },
   {
@@ -19,6 +22,8 @@ const examPlans = [
       "Ibizamini bitanu bitandukanye",
       "Igihe gihagije cyo kwitoza",
       "Gusubiramo ibisubizo nyuma y'ikizamini",
+      "Kwerekana ibisubizo by'ibizamini",
+      "Guhitamo gukora ibizamini byibyapa gusa",
     ],
   },
   {
@@ -28,7 +33,8 @@ const examPlans = [
     features: [
       "Ibizamini byinshi byo kwitoza",
       "Gufata amanota no kugereranya uko uhagaze",
-      "Kwerekwa aho wakosheje no guhabwa inama",
+      "Kwerekana ibisubizo by'ibizamini",
+      "Guhitamo gukora ibizamini byibyapa gusa",
     ],
   },
   {
@@ -37,7 +43,9 @@ const examPlans = [
     durationDays: 30,
     features: [
       "Kwiga igihe kirekire",
-      "Kwiga no gukosorwa n'abarezi b'inzobere",
+      "Gufata amanota no kugereranya uko uhagaze",
+      "Kwerekana ibisubizo by'ibizamini",
+      "Guhitamo gukora ibizamini byibyapa gusa",
     ],
   },
   {
@@ -46,8 +54,9 @@ const examPlans = [
     durationDays: 75,
     features: [
       "Ibizamini byinshi birimo iby’umwihariko",
-      "Kwiga amasomo yihariye ajyanye n’ibizamini",
       "Kwinjira muri forum y'abanyeshuri",
+      "Kwerekana ibisubizo by'ibizamini",
+      "Guhitamo gukora ibizamini byibyapa gusa",
     ],
   },
   {
@@ -56,9 +65,10 @@ const examPlans = [
     durationDays: 730,
     features: [
       "Uburyo butagira umupaka bwo kwitoza",
+      "Gufata amanota no kugereranya uko uhagaze",
       "Kwiga imyaka 2 yose ukoresheje urubuga",
-      "Amahirwe yo kubona seritifika yo kurangiza icyiciro",
-      "Kugira umujyanama wigenga w'amasomo",
+        "Kwerekana ibisubizo by'ibizamini",
+      "Guhitamo gukora ibizamini byibyapa gusa",
     ],
   },
 ];

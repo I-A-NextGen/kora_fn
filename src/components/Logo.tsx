@@ -10,12 +10,24 @@ const Logo = ({ link }: { link: boolean }) => {
             src={"/Umusamariyadark.png"}
             alt="logo"
             fill
-            className="object-contain"/>
+            className="object-contain"
+          />
         </div>
       </Link>
     );
   }
-  return <p className="text-xl font-bold text-primary md:text-2xl">KORA</p>;
+  return (
+    <Link href={"/"}>
+      <div className="relative h-10 w-32">
+        <Image
+          src={"/Umusamariyadark.png"}
+          alt="logo"
+          fill
+          className="object-contain"
+        />
+      </div>
+    </Link>
+  );
 };
 
 export default Logo;
