@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { IoClose } from "react-icons/io5";
 import Logo from "@/components/Logo";
 import GetStarted from "./GetStarted";
+import MobileMoneyPayment from "@/components/PaymentComp";
 
 const Navbar = () => {
   const [width, setWidth] = useState(
@@ -69,6 +70,7 @@ const Navbar = () => {
           <Link href="/">Ahabanza</Link>
           <Link href="/">Uko Bikora</Link>
           <Link href="/">Ibiciro</Link>
+          <MobileMoneyPayment/>
         </div>
         <div className="flex gap-x-4">
           <GetStarted />
