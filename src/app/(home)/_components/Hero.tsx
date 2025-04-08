@@ -28,7 +28,7 @@ const Hero = () => {
             gukora ikizamini
           </p>
           <p>
-            Nkotanyi Driving School ni urubuga (ishuri) rwashyiriweho gufasha
+            Umusamariya ni urubuga (ishuri) rwashyiriweho gufasha
             abanyarwanda bose kumenya no gusobanukirwa amategeko y&apos;umuhanda
             mu rwego rwo guteza imbere umutekano wo mu muhanda.
           </p>

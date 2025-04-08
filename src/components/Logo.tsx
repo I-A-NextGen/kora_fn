@@ -1,14 +1,37 @@
+import Image from "next/image";
 import Link from "next/link";
 
-const Logo = ({ link }: { link: boolean }) => {
+const Logo = ({
+  link = true,
+  blueLogo = true,
+}: {
+  link?: boolean;
+  blueLogo?: boolean;
+}) => {
   if (link) {
     return (
       <Link href={"/"}>
-        <p className="text-xl font-bold text-primary md:text-2xl">KORA</p>
+        <div className="relative h-9 w-36 md:w-40 lg:w-48">
+          <Image
+            src={blueLogo ? "/Umusamariyadark.png" : "/Umusamariya.png"}
+            alt="logo"
+            fill
+            className="object-contain"
+          />
+        </div>
       </Link>
     );
   }
-  return <p className="text-xl font-bold text-primary md:text-2xl">KORA</p>;
+  return (
+    <div className="relative h-8 w-80">
+      <Image
+        src={"/Umusamariyadark.png"}
+        alt="logo"
+        fill
+        className="object-contain"
+      />
+    </div>
+  );
 };
 
 export default Logo;

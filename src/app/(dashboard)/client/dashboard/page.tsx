@@ -77,7 +77,7 @@ const page = () => {
       <div className="relative flex h-44 w-full flex-col justify-between overflow-hidden rounded-2xl bg-primary bg-gradient-to-br px-6 py-7 text-white shadow-lg md:h-48 md:px-10 md:shadow-2xl">
         <div className="absolute -bottom-20 -left-8 z-10 size-60 rounded-full bg-blue-400/15 md:size-72" />
         <div className="z-20 mt-1">
-          <p className="text-[.83rem] md:text-base">Become a KORA Member</p>
+          <p className="text-[.83rem] md:text-base">Become a UmusamariyaMember</p>
           <p className="-mt-1 text-[1.1rem] font-medium tracking-tight md:mt-2 md:text-[1.6rem]">
             Join Our whatsapp Community
           </p>
