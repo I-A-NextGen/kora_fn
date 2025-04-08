@@ -27,10 +27,11 @@ const Logout = ({
 
   useEffect(() => {
     let timer: NodeJS.Timeout;
-
     if (isLoggedOut) {
       persistor.purge();
+      console.log(localStorage);
       localStorage.clear();
+      console.log(localStorage);
       sessionStorage.clear();
       timer = setTimeout(() => {
         dispatch(userAuthReset());
