@@ -89,7 +89,7 @@ export const userLogoutAction = createAsyncThunk(
         user: response.data.user,
       };
     } catch (error) {
-      let message = "Hari Ibitagenze neza, ongera ugerageze!";
+      let message = "Hari Ibitagenze neza, Ongera ugerageze!";
 
       return rejectWithValue({ message });
     }
@@ -111,7 +111,7 @@ export const userAuthAction = createAsyncThunk(
         user: response.data.user,
       };
     } catch (error) {
-      let message = "Hari Ibitagenze neza, ongera ugerageze!";
+      let message = "Hari Ibitagenze neza, Ongera ugerageze!";
 
       return rejectWithValue({ message });
     }

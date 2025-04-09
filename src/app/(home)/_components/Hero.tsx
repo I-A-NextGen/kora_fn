@@ -9,9 +9,9 @@ import GetStarted from "./GetStarted";
 
 const Hero = () => {
   return (
-    <div className="relative flex min-h-screen flex-col items-center justify-center overflow-clip bg-gradient-to-br from-primary/30 from-0% via-white via-40% to-primary/15 px-[5%] pt-20 lg:px-[10%]">
+    <div className="relative flex min-h-screen flex-col items-center justify-center overflow-clip bg-gradient-to-br from-primary/30 from-0% via-white via-40% to-primary/15 px-[5%] pt-40 pb-10  md:pt-28 lg:px-[10%]" id="home">
       <CarsSvg className="absolute left-0 top-0 -z-10" />
-      <div className="flex flex-col items-center justify-center gap-12 text-center lg:w-2/3">
+      <div className="flex flex-col items-center justify-center gap-12 text-center sm:w-[95%] md:w-[85%] lg:w-[85%] xl:w-[75%]">
         <Badge
           variant="outline"
           className="w-fit gap-1.5 rounded-3xl border border-primary px-6 py-2 text-sm text-primary sm:text-base"
@@ -22,10 +22,10 @@ const Hero = () => {
         <h1 className="text-primary">
           Gerageza ubumenyi bwawe mu mategeko y&apos;umuhanda,
         </h1>
-        <div className="flex w-[95%] flex-col gap-4 sm:w-[80%]">
+        <div className="flex w-[95%] flex-col gap-4 sm:w-[80%] lg:w-[100%] xl:w-[80%]">
           <p>
             Kwisonga mugutanga ubumenyi mumategeko y&apos;umuhanda no kugutegura
-            gukora ikizamini
+            gukora Ikizamini
           </p>
           <p>
             Umusamariya ni urubuga (ishuri) rwashyiriweho gufasha
@@ -33,7 +33,7 @@ const Hero = () => {
             mu rwego rwo guteza imbere umutekano wo mu muhanda.
           </p>
         </div>
-        <div className="flex flex-col gap-5 sm:flex-row">
+        <div className="flex  w-[16rem] sm:w-fit flex-col gap-5 sm:flex-row">
           <Button
             variant={"outline"}
             size={"lg"}

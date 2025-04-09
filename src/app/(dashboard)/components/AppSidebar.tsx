@@ -8,20 +8,13 @@ import {
   SidebarMenuAction,
   SidebarMenuButton,
   SidebarMenuItem,
-  SidebarMenuSub,
-  SidebarMenuSubItem,
-  SidebarSeparator,
 } from "@/components/ui/sidebar";
 import { items, itemsfooter } from "@/lib/menu";
 import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
 import { Button } from "../../../components/ui/button";
 import SittingPerson from "@/app/(dashboard)/components/Sittingperson";
-import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from "@/components/ui/collapsible";
+import { Collapsible, CollapsibleContent } from "@/components/ui/collapsible";
 import { Globe, LogOut, MoreHorizontal, MoreVertical } from "lucide-react";
 import {
   DropdownMenu,
