@@ -14,7 +14,7 @@ const RoleWrapper = ({ children }: { children: React.ReactNode }) => {
         if (user.role && pathName.split("/").slice(1)[0] !== user.role) {
           router.replace(`/${user.role}/dashboard`);
         }
-      } else router.replace(`/`);
+      } 
   }, []);
   return loading ? <p>Loading...</p> : <>{children}</>;
 };

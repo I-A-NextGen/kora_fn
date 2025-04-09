@@ -12,7 +12,7 @@ import { Eye, EyeOff } from "lucide-react";
 import { useAppDispatch, useAppSelector } from "@/lib/redux/store";
 import { userLoginReset } from "@/lib/redux/features/user/loginReducer";
 import { useRouter } from "next/navigation";
-import { PulseLoader } from "react-spinners";
+import { PuffLoader, PulseLoader } from "react-spinners";
 import { userLoginAction } from "@/lib/redux/actionCreators/authAction";
 
 const schema = z.object({
@@ -29,6 +29,10 @@ const Page = () => {
     userLoginData,
   } = useAppSelector((state) => state.userLogin);
 
+  const { loading: authLoading, isAuth } = useAppSelector(
+    (state) => state.userAuth,
+  );
+
   const {
     register,
     reset,
@@ -36,7 +40,7 @@ const Page = () => {
     formState: { errors },
   } = useForm({
     resolver: zodResolver(schema),
-    mode: "onBlur",
+    mode: "onChange",
   });
 
   interface FormData {
@@ -68,7 +72,12 @@ const Page = () => {
     dispatch(userLoginAction(data));
   };
 
-  return (
+  return authLoading || isAuth ? (
+    <div className=" col-span-2 flex w-full flex-col items-center justify-center text-primary">
+      <PuffLoader color="#1935ca" />
+      <p>Ihangane akanya gato...</p>
+    </div>
+  ) : (
     <form
       onSubmit={handleSubmit(onSubmit)}
       className="flex w-[100%] flex-col gap-6 py-20 lg:col-start-2 lg:max-w-[29rem]"

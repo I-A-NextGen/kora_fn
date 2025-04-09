@@ -89,7 +89,7 @@ const examSlice = createSlice({
         state.exam.isAtEnd = false;
         state.exam.percentage = (state.exam.score * 100) / 20;
         state.exam.endTime =
-          Date.now() - state.exam.endTime > 1080 * 1000
+          Date.now() - state.exam.startTime > 1080 * 1000
             ? state.exam.startTime + 1080 * 1000
             : Date.now();
       }
@@ -213,6 +213,11 @@ const examSlice = createSlice({
           }
         },
       )
+      .addCase(attemptAction.rejected, (state, action) => {
+        const payload = action.payload as { status: number; message: string };
+        state.loading = false;
+        state.error = payload.message;
+      })
       .addCase(
         submitExamAction.fulfilled,
         (state, action: PayloadAction<IExamSubmitResponseData["data"]>) => {
@@ -225,6 +230,13 @@ const examSlice = createSlice({
           }
         },
       )
+      .addCase(submitExamAction.rejected, (state, action) => {
+        const payload = action.payload as { message: string };
+        return {
+          ...initialState,
+          error: payload.message,
+        };
+      })
       .addMatcher(
         isAnyOf(fetchFreeExamAction.pending, fetchExamAction.pending),
         (state) => {

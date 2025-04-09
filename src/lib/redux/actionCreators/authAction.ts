@@ -67,7 +67,7 @@ export const userLoginAction = createAsyncThunk(
           error.response?.status.toString().startsWith("50"))
       )
         message =
-          "Kwinjira mursi konti yanyu ntago byakunze! Ongera ugerageze.";
+          "Kwinjira muri konti yanyu ntago byakunze! Ongera ugerageze.";
 
       return rejectWithValue({ message });
     }
@@ -103,13 +103,12 @@ export const userAuthAction = createAsyncThunk(
       const response: AxiosResponse<{
         message: string;
         user: IUser;
+        hasPendingExam: boolean;
       }> = await axios.get(
         `${process.env.NEXT_PUBLIC_API_URL}/api/user/auth/me`,
         { withCredentials: true },
       );
-      return {
-        user: response.data.user,
-      };
+      return response.data;
     } catch (error) {
       let message = "Hari Ibitagenze neza, Ongera ugerageze!";
 

@@ -35,6 +35,23 @@ export interface IExamSubmitResponseData {
   };
 }
 
+export interface IAttemptedExamsResponseData {
+  success: true;
+  message: "Exam submitted successfully";
+  data: {
+    totalAttemptedExams: {
+      total: number;
+      success: number;
+      failure: number;
+    };
+    exams: Array<{
+      score: number;
+      timeUsed: number; // In seconds
+      date: Date;
+    }>;
+  };
+}
+
 export const fetchFreeExamAction = createAsyncThunk(
   "exam/free",
   async (_, { rejectWithValue }) => {
@@ -132,7 +149,24 @@ export const submitExamAction = createAsyncThunk(
       return response.data.data;
     } catch (error) {
       let message = "Hari Ibitagenze neza, Ongera ugerageze!";
-      return rejectWithValue({ status, message });
+      return rejectWithValue({ message });
+    }
+  },
+);
+
+export const fetchAllAttemptedExams = createAsyncThunk(
+  "all-attempted-exam",
+  async (_, { rejectWithValue }) => {
+    try {
+      const response: AxiosResponse<IAttemptedExamsResponseData> =
+        await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/exam`, {
+          withCredentials: true,
+        });
+
+      return response.data.data;
+    } catch (error) {
+      let message = "Hari Ibitagenze neza, Ongera ugerageze!";
+      return rejectWithValue({ message });
     }
   },
 );

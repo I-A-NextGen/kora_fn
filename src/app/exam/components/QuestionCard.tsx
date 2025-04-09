@@ -27,7 +27,9 @@ const QuestionCard = () => {
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
   const dispatch = useAppDispatch();
-  const { loading, isExamFree, exam } = useAppSelector((state) => state.exam);
+  const { loading, isExamFree, exam, error, isExamSubmitted } = useAppSelector(
+    (state) => state.exam,
+  );
 
   const [question, setQuestion] = useState<IQuestion>(
     exam!.questions[currentQuestionIndex]!,
@@ -38,7 +40,17 @@ const QuestionCard = () => {
   }, [currentQuestionIndex]);
 
   useEffect(() => {
-    if (exam?.isAtEnd) {
+    if (
+      currentQuestionIndex === 0 &&
+      exam?.currentQuestionIndex &&
+      exam?.currentQuestionIndex > 1
+    ) {
+      setCurrentQuestionIndex(exam?.currentQuestionIndex);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (exam?.isAtEnd && !isExamSubmitted) {
       intervalRef.current = setInterval(() => {
         if (counter === 0) {
           if (isExamFree) {
@@ -66,6 +78,12 @@ const QuestionCard = () => {
       handleSubmit();
     }
   }, [hasConfirmedAnswer]);
+
+  useEffect(() => {
+    if (error) {
+      setHasConfirmedAnswer(false);
+    }
+  }, [error]);
 
   useEffect(() => {
     if (!!exam?.correctAnswerId) {
@@ -111,7 +129,7 @@ const QuestionCard = () => {
       <CardContent>
         <div className="flex flex-col gap-6">
           <div className="flex h-full flex-col items-center gap-5">
-            <p className="w-full text-justify text-lg font-semibold leading-6">
+            <p className="w-full text-justify text-[1.1rem] font-semibold leading-6 md:text-lg">
               {question.question!}
             </p>
             {question.isRoadSign && question.photo && (
@@ -130,7 +148,7 @@ const QuestionCard = () => {
               !isURL(answer.value) ? (
                 <button
                   key={answer._id}
-                  className={`relative flex w-full items-center rounded-sm border border-black/50 px-5 py-3 text-black hover:bg-primary/20 ${
+                  className={`relative flex w-full items-center rounded-sm border border-black/50 px-4 md:px-5  py-[10px] md:py-3 text-black hover:bg-primary/20 ${
                     exam?.selectedAnswerId === answer._id ? "bg-primary/25" : ""
                   } ${
                     hasConfirmedAnswer &&
@@ -150,7 +168,7 @@ const QuestionCard = () => {
                   disabled={hasConfirmedAnswer}
                 >
                   {hasConfirmedAnswer && exam?.correctAnswerId && (
-                    <div className="absolute right-5 top-[25%]">
+                    <div className="absolute right-3 md:right-5">
                       {exam?.correctAnswerId === answer._id && (
                         <Check strokeWidth={4} className="text-green-700" />
                       )}
@@ -171,7 +189,7 @@ const QuestionCard = () => {
                     dispatch(setSelectedAnswer({ selectedId: answer._id }))
                   }
                   key={answer._id}
-                  className="group relative h-40 w-[calc(50%-0.8rem)] cursor-pointer overflow-hidden rounded-sm border border-black"
+                  className="group relative h-40 w-[calc(50%-0.4rem)] cursor-pointer overflow-hidden rounded-sm border border-black"
                 >
                   <div
                     className={`absolute top-0 z-10 size-full hover:bg-primary/50 ${
@@ -222,9 +240,9 @@ const QuestionCard = () => {
             )}
           </div>
           <Button
-            className="w mt-4 h-12 rounded-sm disabled:bg-black/50"
+            className="w mt-4 h-12 rounded-md disabled:bg-black/50"
             onClick={() => {
-              if (exam?.isAtEnd) {
+              if (exam?.isAtEnd && !isExamSubmitted) {
                 if (isExamFree) {
                   dispatch(finishExam());
                   return;

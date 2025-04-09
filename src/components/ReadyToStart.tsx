@@ -73,7 +73,7 @@ const ReadyToStart = ({ isFree = false }: { isFree?: boolean }) => {
         dispatch(fetchExamAction(data));
       }
     } else {
-      toast.info("Gukomeza hitamo ubwoko bw`ikizamin");
+      toast.info("Gukomeza hitamo ubwoko bw`ikizamini.");
     }
   };
 

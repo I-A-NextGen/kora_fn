@@ -9,7 +9,7 @@ import GetStarted from "./GetStarted";
 
 const Hero = () => {
   return (
-    <div className="relative flex min-h-screen flex-col items-center justify-center overflow-clip bg-gradient-to-br from-primary/30 from-0% via-white via-40% to-primary/15 px-[5%] py-20 sm:pb-0 lg:px-[10%]">
+    <div className="relative flex min-h-screen flex-col items-center justify-center overflow-clip bg-gradient-to-br from-primary/30 from-0% via-white via-40% to-primary/15 px-[5%] pt-40 pb-10  md:pt-28 lg:px-[10%]" id="home">
       <CarsSvg className="absolute left-0 top-0 -z-10" />
       <div className="flex flex-col items-center justify-center gap-12 text-center sm:w-[95%] md:w-[85%] lg:w-[85%] xl:w-[75%]">
         <Badge
@@ -33,7 +33,7 @@ const Hero = () => {
             mu rwego rwo guteza imbere umutekano wo mu muhanda.
           </p>
         </div>
-        <div className="flex flex-col gap-5 sm:flex-row">
+        <div className="flex  w-[16rem] sm:w-fit flex-col gap-5 sm:flex-row">
           <Button
             variant={"outline"}
             size={"lg"}
