@@ -18,7 +18,7 @@ const PricingCard = ({
   features,
 }: PricingCardProps) => {
   return (
-    <div className="flex w-80 flex-col items-center gap-5 rounded-2xl border border-black px-4 py-8 text-center xl:w-[20rem]">
+    <div className="flex w-80 flex-col items-center gap-3 rounded-2xl border border-black px-4 py-8 text-center md:gap-5 xl:w-[20rem]">
       <h5 className="">
         {exams > 100000 ? <>Ibizamini bidashira</> : <>Ibizamini {exams}</>}
       </h5>
@@ -28,7 +28,7 @@ const PricingCard = ({
           : `${durationDays === 1 ? "Umunsi" : "Iminsi"}  ${durationDays}`}
       </p>
       <h2 className="font-bold">{amount} RWF</h2>
-      <div className="flex size-fit w-[90%] flex-col gap-1 md:gap-3">
+      <div className="mt-3 flex size-fit w-[90%] flex-col gap-3 md:mt-1">
         {features.map((item, i) => {
           return (
             <div
@@ -49,7 +49,10 @@ const PricingCard = ({
           );
         })}
       </div>
-      <Button size={"lg"} className="mt-auto h-12 rounded-3xl bg-primary">
+      <Button
+        size={"lg"}
+        className="mt-4 h-12 rounded-3xl bg-primary md:mt-auto"
+      >
         <Link href={"/"}>Ishyura Ikizamini</Link>
       </Button>
     </div>

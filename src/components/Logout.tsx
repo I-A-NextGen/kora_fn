@@ -70,13 +70,13 @@ const Logout = ({
     <Button
       onClick={handleLogout}
       variant="default"
-      className="group flex h-[2.7rem] w-full justify-start gap-3 bg-transparent px-5 text-inherit shadow-none duration-0 hover:bg-transparent"
+      className="group flex h-[2.7rem] w-full justify-start gap-2 bg-transparent px-5 text-inherit shadow-none duration-0 hover:bg-transparent"
     >
       <LogOut size={iconSize ? iconSize : 18} className="!size-fit" />
       <span
         className={`text-xs font-normal tracking-tight md:text-[.9rem] md:font-medium md:tracking-normal ${className ? className : ""}`}
       >
-        Log Out
+        Gusohoka
       </span>
       {loading && (
         <PulseLoader size={5} className="group-hover:*:!bg-white" margin={3} />

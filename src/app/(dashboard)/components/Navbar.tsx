@@ -22,6 +22,7 @@ import PlanAndUpgrade from "./PlanAndUpgrade";
 import Logo from "@/components/Logo";
 import Logout from "@/components/Logout";
 import { useAppSelector } from "@/lib/redux/store";
+import NavBarUser from "./NavBarUser";
 
 const Navbar = () => {
   const [notifications, setNotifications] = useState(initialNotifications);
@@ -117,53 +118,7 @@ const Navbar = () => {
               ))}
             </PopoverContent>
           </Popover>
-          <Popover>
-            <PopoverTrigger>
-              <div className="flex cursor-pointer items-center gap-2">
-                <div className="relative flex size-10 items-center justify-center overflow-hidden rounded-full border border-black bg-primary/15 ring-1 ring-background">
-                  <HiMiniUser size={28} />
-                </div>
-                {/* <div className="relative size-10 overflow-hidden rounded-full ring-1 ring-background">
-              <Image src="/profile.jpg" alt="Friend 03" fill />
-            </div> */}
-                <div className="hidden w-28 flex-col items-start justify-center md:flex">
-                  <span className="line-clamp-1 text-start font-medium capitalize leading-4 text-foreground">
-                    {(user?.firstName + " " + user?.lastName).toLowerCase()}
-                  </span>
-                  <small className="line-clamp-1 font-light leading-4">
-                    {user?.phoneNumber}
-                  </small>
-                </div>
-              </div>
-            </PopoverTrigger>
-            <PopoverContent className="w-64 pb-8 pt-10 shadow-2xl">
-              <nav className="min-h-44">
-                <ul className="list m-0 flex h-full flex-col justify-between gap-8">
-                  <div className="flex flex-col gap-y-2">
-                    <li>
-                      <Link
-                        href={`/${role}/dashboard/account`}
-                        className="flex h-[2.7rem] items-center gap-2 rounded-md pl-5 hover:bg-primary hover:text-white"
-                      >
-                        <CircleUserRoundIcon size={22} />
-                        <span>My Account</span>
-                      </Link>
-                    </li>
-
-                    <li className="flex h-[2.7rem] items-center gap-2 rounded-md hover:bg-primary hover:text-white">
-                      <Logout
-                        iconSize={22}
-                        className="text-sm md:text-base md:font-normal"
-                      />
-                    </li>
-                  </div>
-                  <li className="flex items-center justify-between overflow-hidden rounded-3xl border-2 border-primary pl-4">
-                    <PlanAndUpgrade className="flex rounded-3xl" />
-                  </li>
-                </ul>
-              </nav>
-            </PopoverContent>
-          </Popover>
+          <NavBarUser />
         </div>
       </div>
     </div>

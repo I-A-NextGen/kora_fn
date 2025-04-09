@@ -89,9 +89,9 @@ const examPlans = [
   },
 ];
 
-const HeroPricing = () => {
+const Pricing = () => {
   return (
-    <div className="min-h-screen bg-primary/10 px-[5%] py-32 lg:px-[10%]">
+    <div className="min-h-screen scroll-mt-12 bg-primary/10 px-[5%] py-32 lg:px-[10%]" id="pricing">
       <div className="flex flex-col items-center justify-center gap-1">
         <h2>Ibiciro</h2>
         <p>Umutekano binyuze mu bumenyi.</p>
@@ -111,4 +111,4 @@ const HeroPricing = () => {
   );
 };
 
-export default HeroPricing;
+export default Pricing;

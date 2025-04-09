@@ -1,12 +1,18 @@
 "use client";
-import { Button } from "@/components/ui/button";
-import { LogIn, Pen } from "lucide-react";
 import { CgMenuRightAlt } from "react-icons/cg";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { IoClose } from "react-icons/io5";
 import Logo from "@/components/Logo";
 import GetStarted from "./GetStarted";
+import { useAppSelector } from "@/lib/redux/store";
+import { useAuthMe } from "@/hooks/useAuthMe";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
+import NavBarUser from "@/app/(dashboard)/components/NavBarUser";
+import { toast } from "sonner";
+import NavBarUserContent from "@/app/(dashboard)/components/NavBarUserContent";
+import { CircleDollarSign, Cog, Home } from "lucide-react";
 
 const Navbar = () => {
   const [width, setWidth] = useState(
@@ -14,6 +20,20 @@ const Navbar = () => {
   );
   const [isScrolled, setIsScrolled] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
+
+  // User Auth
+  const { authMe } = useAuthMe();
+  const {
+    loading: authLoading,
+    user,
+    isAuth,
+  } = useAppSelector((state) => state.userAuth);
+
+  useEffect(() => {
+    if (!user || !isAuth) {
+      authMe();
+    }
+  }, [isAuth]);
 
   useEffect(() => {
     const handleResize = () => {
@@ -34,6 +54,14 @@ const Navbar = () => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
+
+  useEffect(() => {
+    let timer: NodeJS.Timeout;
+    timer = setTimeout(() => {
+      toast.dismiss();
+    }, 3000);
+    return () => clearTimeout(timer);
+  }, [isAuth]);
 
   useEffect(() => {
     if (showMenu) {
@@ -57,21 +85,88 @@ const Navbar = () => {
         <CgMenuRightAlt className="cursor-pointer text-3xl md:hidden" />
       </div>
       <div
-        className={`${showMenu ? "flex" : "hidden"} fixed right-0 top-0 h-lvh w-[calc(100vw-20%)] animate-slideInToLeft flex-col items-center gap-4 gap-y-24 bg-[#e6ecfb] px-[5%] py-9 md:relative md:flex md:h-fit md:w-fit md:animate-none md:flex-row md:gap-8 md:bg-transparent md:px-0 md:py-0 lg:gap-32`}
+        className={`${showMenu ? "flex" : "hidden"} fixed right-0 top-0 h-lvh w-[calc(100vw-20%)] animate-slideInToLeft flex-col items-center justify-center gap-4 bg-[#e6ecfb] px-[5%] py-9 sm:w-[calc(100vw-30%)] md:relative md:flex md:h-fit md:w-fit md:animate-none md:flex-row md:gap-8 md:bg-transparent md:px-0 md:py-0 lg:gap-32`}
       >
         <div
-          className="self-end"
+          className="absolute right-[5%] top-5"
           onClick={() => setShowMenu((prevValue) => !prevValue)}
         >
           <IoClose className="cursor-pointer text-4xl md:hidden" />
         </div>
-        <div className="mt-8 flex flex-col gap-x-6 gap-y-6 sm:mt-0 md:flex-row md:items-center lg:gap-x-10">
-          <Link href="/">Ahabanza</Link>
-          <Link className="text-nowrap" href="/">Uko Bikora</Link>
-          <Link href="/">Ibiciro</Link>
+        <div className="flex w-[90%] flex-col gap-x-6 gap-y-2 sm:mt-0 sm:w-[80%] md:flex-row md:items-center lg:gap-x-10">
+          <a
+            href="#home"
+            className="flex h-[2.7rem] items-center gap-2 rounded-md pl-5 hover:bg-primary hover:text-white md:pl-0 md:hover:bg-transparent md:hover:text-black"
+            onClick={() => setShowMenu(false)}
+          >
+            <Home strokeWidth={1.7} size={21} className="md:hidden" />
+
+            <span className="!text-[.9rem] font-normal lg:!text-base">
+              Ahabanza
+            </span>
+          </a>
+          <a
+            className="flex h-[2.7rem] items-center gap-2 rounded-md pl-5 hover:bg-primary hover:text-white md:pl-0 md:hover:bg-transparent md:hover:text-black"
+            href="#how-it-works"
+            onClick={() => setShowMenu(false)}
+          >
+            <Cog strokeWidth={1.7} size={21} className="md:hidden" />
+            <span className="text-nowrap !text-[.9rem] font-normal lg:!text-base">
+              Uko Bikora
+            </span>
+          </a>
+          <a
+            href="#pricing"
+            className="flex h-[2.7rem] items-center gap-2 rounded-md pl-5 hover:bg-primary hover:text-white md:pl-0 md:hover:bg-transparent md:hover:text-black"
+            onClick={() => setShowMenu(false)}
+          >
+            <CircleDollarSign
+              strokeWidth={1.7}
+              size={21}
+              className="md:hidden"
+            />
+            <span className="!text-[.9rem] font-normal lg:!text-base">
+              Ibiciro
+            </span>
+          </a>
         </div>
-        <div className="flex gap-x-4">
-          <GetStarted />
+        <div className="flex w-[90%] gap-x-4 sm:w-[80%]">
+          {!authLoading ? (
+            isAuth ? (
+              <>
+                <NavBarUser className="hidden md:flex" />
+                <div className="mt-10 w-full border-t border-black pt-1 md:hidden">
+                  <NavBarUserContent />
+                </div>
+              </>
+            ) : (
+              <div className="mt-5 md:mt-0">
+                <GetStarted />
+              </div>
+            )
+          ) : (
+            <div>
+              <Skeleton
+                baseColor="#d1d7ed"
+                highlightColor="#f1f5f9"
+                width={170}
+                height={45}
+                style={{
+                  borderRadius: "1.5rem",
+                }}
+                inline
+              />
+              <Skeleton
+                baseColor="#d1d7ed"
+                highlightColor="#f1f5f9"
+                width={45}
+                height={45}
+                className="ml-3"
+                circle
+                inline
+              />
+            </div>
+          )}
         </div>
       </div>
     </nav>
