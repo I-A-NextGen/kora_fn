@@ -10,6 +10,7 @@ import { AlertCircle, Save } from "lucide-react";
 import { z } from "zod";
 import { toast } from "sonner";
 import DashHeader from "./DashHeader";
+import { useAppSelector } from "@/lib/redux/store";
 
 const profileSchema = z
   .object({
@@ -41,20 +42,6 @@ const profileSchema = z
       path: ["currentPassword"],
     },
   );
-const profileData = {
-  name: "JANE SMITH",
-  role: "Client",
-  avatar:
-    "https://cdn.builder.io/api/v1/image/assets/TEMP/d4e87f1e629253c7e10e5ca971c17424527252bf?placeholderIfAbsent=true",
-  firstName: "Jane",
-  lastName: "Smith",
-  phone: "+250 789 234 555",
-  email: "aimedivin4565@gmail.com",
-  currentPassword: "Password123",
-  examsCompleted: 2,
-  totalExams: 5,
-  currentDate: "ku wa 25, Gashyantare, 2025",
-};
 interface InfoCardProps {
   title: string;
   children: React.ReactNode;
@@ -93,11 +80,12 @@ const ErrorMessage = (message: string) => (
 );
 
 export default function AccountProfile() {
+  const { user } = useAppSelector((state) => state.userAuth);
   const [userData, setUserData] = useState({
-    firstName: profileData.firstName,
-    lastName: profileData.lastName,
-    phone: profileData.phone,
-    email: profileData.email,
+    firstName: user?.firstName || "",
+    lastName: user?.lastName || "",
+    phone: user?.phoneNumber || "",
+    email: "",
   });
   const [formInputs, setFormInputs] = useState({
     firstName: userData.firstName,
@@ -165,8 +153,7 @@ export default function AccountProfile() {
       profileSchema.parse(dataToValidate);
       // Validate that the current password matches the stored password
       if (
-        dataToValidate.currentPassword &&
-        dataToValidate.currentPassword !== profileData.currentPassword
+        dataToValidate.currentPassword
       ) {
         throw new Error("Current password is incorrect");
       }
@@ -234,7 +221,7 @@ export default function AccountProfile() {
         <div className="flex min-h-[300] w-full items-center gap-4 text-center">
           <div className="my-auto flex w-full flex-1 flex-col items-center self-stretch py-8">
             <img
-              src={profileData.avatar || "/placeholder.svg"}
+              src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${user?._id}`}
               className="aspect-[1] h-[180] w-[180] rounded-full object-cover"
               alt={`${userData.firstName}'s profile picture`}
             />
@@ -244,7 +231,7 @@ export default function AccountProfile() {
                 {userData.lastName.toUpperCase()}
               </h2>
               <p className="text-lg font-normal tracking-[-0.54] text-[rgba(77,77,77,1)]">
-                {profileData.role}
+                {user?.role}
               </p>
             </div>
           </div>
@@ -259,6 +246,7 @@ export default function AccountProfile() {
                     <Input
                       id="firstName"
                       value={formInputs.firstName}
+                      readOnly
                       onChange={(e) =>
                         handleInputChange("firstName", e.target.value)
                       }
@@ -270,6 +258,7 @@ export default function AccountProfile() {
                     <Input
                       id="lastName"
                       value={formInputs.lastName}
+                      readOnly
                       onChange={(e) =>
                         handleInputChange("lastName", e.target.value)
                       }
@@ -281,6 +270,7 @@ export default function AccountProfile() {
                     <Input
                       id="phone"
                       value={formInputs.phone}
+                      readOnly
                       onChange={(e) =>
                         handleInputChange("phone", e.target.value)
                       }
@@ -292,7 +282,7 @@ export default function AccountProfile() {
               </div>
             </InfoCard>
 
-            <InfoCard title="Email" className="max-md:mt-10">
+            {/* <InfoCard title="Email" className="max-md:mt-10">
               <div className="w-full pl-5 text-base font-normal tracking-[-0.48]">
                   <Label htmlFor="email" className="flex flex-col">
                     <span className="w-1/3">Email</span>
@@ -308,37 +298,46 @@ export default function AccountProfile() {
                     />
                   </Label>
               </div>
-            </InfoCard>
+            </InfoCard> */}
           </div>
-          <div className="flex-1">
-            <InfoCard title="Your Package">
-              <div className="flex w-full items-center justify-between gap-5 pl-5">
-                <div className="my-auto flex w-[141] gap-[15] self-stretch text-xl font-medium text-black">
-                  <img
-                    src="https://cdn.builder.io/api/v1/image/assets/TEMP/5cbdc5e9c88b38426e9eb090a47aee70e8ed3958?placeholderIfAbsent=true"
-                    className="w-[30] shrink-0 object-contain"
-                    alt="Exam icon"
-                  />
-                  <div className="w-2/3">
-                    {profileData.examsCompleted}/{profileData.totalExams}{" "}
-                    <span className="font-normal">(Exams)</span>
+          {user?.role === "client" && (
+            <div className="flex-1">
+              <InfoCard title="Your Package">
+                <div className="flex w-full flex-col items-start gap-4 px-4 py-3 sm:flex-row sm:items-center sm:justify-between sm:gap-5 sm:pl-5">
+                  <div className="flex w-full items-start gap-3 text-xl font-medium text-black sm:w-auto">
+                    <img
+                      src="https://cdn.builder.io/api/v1/image/assets/TEMP/5cbdc5e9c88b38426e9eb090a47aee70e8ed3958?placeholderIfAbsent=true"
+                      className="w-7 shrink-0 object-contain sm:w-8"
+                      alt="Exam icon"
+                    />
+                    <div className="flex flex-col">
+                      <div className="flex flex-wrap items-center gap-1">
+                        <span className="font-normal">Ibizami usigaranye:</span>
+                        <span>{user?.plan.exams}</span>
+                      </div>
+                      <div className="text-sm font-normal text-gray-500">
+                        Bizarangira:{" "}
+                        {new Date(
+                          user?.plan.expires ?? "",
+                        ).toLocaleDateString()}
+                      </div>
+                    </div>
                   </div>
+                  <Button
+                    className="mt-2 w-full px-4 text-center sm:mt-0 sm:w-auto sm:px-8"
+                    aria-label="Upgrade package"
+                  >
+                    <span className="my-auto self-stretch">Upgrade</span>
+                    <img
+                      src="https://cdn.builder.io/api/v1/image/assets/TEMP/d04adfe82e2a142bfe890af815bdff7f5f3a7855?placeholderIfAbsent=true"
+                      className="my-auto aspect-square shrink-0 self-stretch object-contain"
+                      alt="Upgrade icon"
+                    />
+                  </Button>
                 </div>
-                <Button
-                  className="items-center px-8"
-                  aria-label="Upgrade package"
-                >
-                  <span className="my-auto self-stretch">Upgrade</span>
-                  <img
-                    src="https://cdn.builder.io/api/v1/image/assets/TEMP/d04adfe82e2a142bfe890af815bdff7f5f3a7855?placeholderIfAbsent=true"
-                    className="my-auto aspect-[1] shrink-0 self-stretch object-contain"
-                    alt="Upgrade icon"
-                  />
-                </Button>
-              </div>
-            </InfoCard>
+              </InfoCard>
 
-            <InfoCard title="Security" className="max-md:mt-10">
+              {/* <InfoCard title="Security" className="max-md:mt-10">
               <div className="flex w-full flex-col items-stretch justify-center pl-5 font-normal">
                 <div className="mb-4">
                   <Label
@@ -402,10 +401,11 @@ export default function AccountProfile() {
                   </div>
                 )}
               </div>
-            </InfoCard>
-          </div>
+            </InfoCard> */}
+            </div>
+          )}
         </div>
-        <div className="mt-8 flex justify-end gap-4">
+        {/* <div className="mt-8 flex justify-end gap-4">
           <Button
             variant="outline"
             onClick={resetForm}
@@ -422,7 +422,7 @@ export default function AccountProfile() {
             <Save className="mr-2 h-4 w-4" />
             Save All Changes
           </Button>
-        </div>
+        </div> */}
       </div>
     </div>
   );
