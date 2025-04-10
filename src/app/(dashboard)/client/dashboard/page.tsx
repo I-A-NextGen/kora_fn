@@ -7,7 +7,19 @@ import DashHeader from "../../components/DashHeader";
 import StartExamCard from "../../components/StartExamCard";
 import { Button } from "@/components/ui/button";
 
+import { useEffect } from "react";
+import { useAppDispatch, useAppSelector } from "@/lib/redux/store";
+import { fetchStats } from "@/lib/redux/actionCreators/statsAction";
+
 const page = () => {
+  const dispatch = useAppDispatch();
+
+  const stats = useAppSelector((state) => state.stats.data);
+
+  useEffect(() => {
+    dispatch(fetchStats());
+  }, [dispatch]);
+
   return (
     <div className="flex min-h-screen flex-col gap-3 md:gap-8">
       <DashHeader name={true} title="Mwiriwe" />
@@ -25,7 +37,7 @@ const page = () => {
             <div className="flex w-full flex-row items-center gap-7 rounded-2xl sm:gap-5 md:gap-6">
               <div className="flex flex-col">
                 <h1 className="text-[3.5rem] font-semibold leading-[2.7rem] md:text-[5rem] md:leading-[4.6rem]">
-                  100
+                  {stats ? stats.totalQuestions : "..."}
                 </h1>
                 <p className="text-nowrap font-medium tracking-tight text-gray-500">
                   Ibibazo wakoze
@@ -34,11 +46,17 @@ const page = () => {
               <div className="flex flex-col gap-1 font-medium text-primary">
                 <span className="inline-flex gap-1">
                   <Clock size={22} />
-                  <span>:&nbsp;&nbsp;4h</span>
+                  <span>
+                    :&nbsp;&nbsp;
+                    {stats ? `iminota ${stats.totalTime}` : "..."}
+                  </span>
                 </span>
                 <span className="inline-flex gap-1">
                   <Flag size={22} />
-                  <span>:&nbsp;&nbsp;100/200</span>
+                  <span>
+                    :&nbsp;&nbsp;{stats ? stats.totalMarks : "..."}/
+                    {stats ? stats.totalQuestions : "..."}
+                  </span>
                 </span>
               </div>
             </div>
@@ -58,7 +76,9 @@ const page = () => {
             <div className="flex flex-col">
               <div className="-mb-1 flex items-end">
                 <h1 className="text-[3.5rem] font-semibold leading-[2.7rem] md:text-[5rem] md:leading-[4.6rem]">
-                  10
+                  {stats?.winningPossibility
+                    ? `${Math.round(parseFloat(stats.winningPossibility.replace("%", "")))}`
+                    : "N/A"}
                 </h1>
                 <span className="mb-1 h-fit text-2xl leading-3 md:text-4xl">
                   %
@@ -77,7 +97,9 @@ const page = () => {
       <div className="relative flex h-44 w-full flex-col justify-between overflow-hidden rounded-2xl bg-primary bg-gradient-to-br px-6 py-7 text-white shadow-lg md:h-48 md:px-10 md:shadow-2xl">
         <div className="absolute -bottom-20 -left-8 z-10 size-60 rounded-full bg-blue-400/15 md:size-72" />
         <div className="z-20 mt-1">
-          <p className="text-[.83rem] md:text-base">Become a UmusamariyaMember</p>
+          <p className="text-[.83rem] md:text-base">
+            Become a UmusamariyaMember
+          </p>
           <p className="-mt-1 text-[1.1rem] font-medium tracking-tight md:mt-2 md:text-[1.6rem]">
             Join Our whatsapp Community
           </p>
