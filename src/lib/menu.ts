@@ -18,13 +18,13 @@ export const items = [
   },
   {
     role: "*",
-    label: "Exams",
+    label: "Ibizamini",
     url: "exams",
     icon: LuNotebookPen,
   },
   {
     role: "admin",
-    label: "Clients",
+    label: "Abakiliya",
     url: "clients",
     icon: PiUsersThreeBold,
   },
@@ -36,7 +36,7 @@ export const items = [
   },
   {
     role: "client",
-    label: "Payment",
+    label: "Kwishyura",
     url: "payment",
     icon: CircleDollarSign,
   },

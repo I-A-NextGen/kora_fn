@@ -8,20 +8,13 @@ import {
   SidebarMenuAction,
   SidebarMenuButton,
   SidebarMenuItem,
-  SidebarMenuSub,
-  SidebarMenuSubItem,
-  SidebarSeparator,
 } from "@/components/ui/sidebar";
 import { items, itemsfooter } from "@/lib/menu";
 import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
 import { Button } from "../../../components/ui/button";
 import SittingPerson from "@/app/(dashboard)/components/Sittingperson";
-import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from "@/components/ui/collapsible";
+import { Collapsible, CollapsibleContent } from "@/components/ui/collapsible";
 import { Globe, LogOut, MoreHorizontal, MoreVertical } from "lucide-react";
 import {
   DropdownMenu,
@@ -30,6 +23,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import Logout from "@/components/Logout";
+import Logo from "@/components/Logo";
 
 export function AppSidebar() {
   const path = usePathname();
@@ -46,7 +40,7 @@ export function AppSidebar() {
   return (
     <Sidebar className="shadow-[0px_-25px_45px_-20px_rgba(0,_0,_0,_0.3)] md:min-h-svh md:px-2 md:py-5 md:shadow-none">
       <SidebarHeader className="hidden min-h-24 text-primary md:grid">
-        <h4 className="px-4 font-bold">KORA</h4>
+        <Logo className="!w-[9.5rem] !mx-4 " />
       </SidebarHeader>
       <SidebarContent className="justify-between">
         <SidebarGroup className="flex-row justify-between gap-3 group-data-[collapsible=icon]:hidden md:flex-col">

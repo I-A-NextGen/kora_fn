@@ -5,14 +5,16 @@ import AuthWrapper from "./components/AuthWrapper";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <SidebarProvider style={{} as React.CSSProperties}>
-      <AuthWrapper>
-        <AppSidebar />
-        <main className="w-full bg-primary/5 pb-16 md:pb-0">
-          <Navbar />
-          <div className="px-[4%] py-10">{children}</div>
-        </main>
-      </AuthWrapper>
-    </SidebarProvider>
+    <div>
+      <SidebarProvider style={{} as React.CSSProperties}>
+        <AuthWrapper>
+          <AppSidebar />
+          <main className="relative w-full bg-primary/5 pb-16 md:pb-0">
+            <Navbar />
+            <div className="px-[4%] py-10">{children}</div>
+          </main>
+        </AuthWrapper>
+      </SidebarProvider>
+    </div>
   );
 }

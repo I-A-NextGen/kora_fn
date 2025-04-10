@@ -7,6 +7,7 @@ import { persistStore, persistReducer } from "redux-persist";
 const persistConfig = {
   key: "root",
   storage,
+  blacklist: ["attemptedExams"],
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

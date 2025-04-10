@@ -1,4 +1,4 @@
-import { HowItWork } from "./HowItWork";
+import { HowItWorkCard } from "./HowItWorkCard";
 
 const steps = [
   {
@@ -28,41 +28,40 @@ const steps = [
 ];
 
 
-const HeroFeatures = () => {
+const HowItWorks = () => {
   return (
-    <div className="my-32 min-h-screen px-[5%] sm:px-[15%] lg:px-[10%]">
+    <div
+      className="my-32 min-h-screen px-[5%] sm:px-[15%] lg:px-[10%] scroll-mt-36"
+      id="how-it-works"
+    >
       <div className="flex flex-col items-center justify-center gap-1">
         <h2>Uko Bikora</h2>
         <p>Umutekano binyuze mu bumenyi.</p>
       </div>
       <div className="mt-20 flex flex-col gap-y-8 text-justify">
-        <div className="flex flex-wrap lg:justify-center gap-8 lg:flex-nowrap lg:gap-12">
-          {
-            steps.slice(0,2).map((step, index) => (
-              <HowItWork
-                key={index}
-                num={step.number}
-                title={step.title}
-                content={step.description}
-              />
-            ))
-          }
+        <div className="flex flex-wrap gap-8 lg:flex-nowrap lg:justify-center lg:gap-12">
+          {steps.slice(0, 2).map((step, index) => (
+            <HowItWorkCard
+              key={index}
+              num={step.number}
+              title={step.title}
+              content={step.description}
+            />
+          ))}
         </div>
-        <div className="flex flex-wrap lg:justify-center gap-8 lg:flex-nowrap lg:gap-12">
-        {
-            steps.slice(2,4).map((step, index) => (
-              <HowItWork
-                key={index}
-                num={step.number}
-                title={step.title}
-                content={step.description}
-              />
-            ))
-          }
+        <div className="flex flex-wrap gap-8 lg:flex-nowrap lg:justify-center lg:gap-12">
+          {steps.slice(2, 4).map((step, index) => (
+            <HowItWorkCard
+              key={index}
+              num={step.number}
+              title={step.title}
+              content={step.description}
+            />
+          ))}
         </div>
       </div>
     </div>
   );
 };
 
-export default HeroFeatures;
+export default HowItWorks;

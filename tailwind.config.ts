@@ -1,3 +1,4 @@
+import { transform } from "next/dist/build/swc/generated-native";
 import { type Config } from "tailwindcss";
 import { fontFamily } from "tailwindcss/defaultTheme";
 
@@ -15,7 +16,6 @@ export default {
         sm: "570px",
       },
       borderRadius: {
-        lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 6px)",
       },
@@ -96,9 +96,18 @@ export default {
             transform: "translateX(0)",
           },
         },
+        "bounce-x": {
+          "0%, 100%": {
+            transform: "translateX(0)",
+          },
+          "50%": {
+            transform: "translateX(30%)",
+          },
+        },
       },
       animation: {
         slideInToLeft: "slideInToLeft .5s ease-out forwards",
+        "bounce-x": "bounce-x 1s cubic-bezier(0.4, 0, 0.6, 1) infinite",
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
       },

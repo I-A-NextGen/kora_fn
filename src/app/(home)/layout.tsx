@@ -1,6 +1,4 @@
 import "@/styles/globals.css";
-
-import { GeistSans } from "geist/font/sans";
 import { type Metadata } from "next";
 import Navbar from "./_components/Navbar";
 import Footer from "./_components/Footer";
@@ -10,8 +8,8 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <div className="relative">
-        <Navbar />
-        {children}
+      <Navbar />
+      {children}
       <Footer />
     </div>
   );
