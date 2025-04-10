@@ -1,7 +1,7 @@
 import React from 'react'
 import PricingCard from './PricingCard'
 
-const examPlans = [
+export const examPlans = [
   {
     amount: 300,
     exams: 2,

@@ -16,17 +16,102 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 
-export default function MobileMoneyPayment() {
+export const examPlans = [
+  {
+    id: "basic",
+    amount: 300,
+    label: "Basic (300 RWF)",
+    exams: 2,
+    durationDays: 1,
+    features: [
+      "Kugerageza ibizamini bibiri by'icyiciro kimwe",
+      "Inkunga yihuse ku bibazo",
+      "Ikiguzi cyangwa ibisubizo bikurikiranwa",
+      "Kwerekana ibisubizo by'ibizamini",
+      "Guhitamo gukora ibizamini byibyapa gusa",
+    ],
+  },
+  {
+    id: "standard",
+    amount: 500,
+    label: "Standard (500 RWF)",
+    exams: 5,
+    durationDays: 3,
+    features: [
+      "Ibizamini bitanu bitandukanye",
+      "Igihe gihagije cyo kwitoza",
+      "Gusubiramo ibisubizo nyuma y'ikizamini",
+      "Kwerekana ibisubizo by'ibizamini",
+      "Guhitamo gukora ibizamini byibyapa gusa",
+    ],
+  },
+  {
+    id: "premium",
+    amount: 1000,
+    label: "Premium (1000 RWF)",
+    exams: 12,
+    durationDays: 7,
+    features: [
+      "Ibizamini byinshi byo kwitoza",
+      "Gufata amanota no kugereranya uko uhagaze",
+      "Kwerekana ibisubizo by'ibizamini",
+      "Guhitamo gukora ibizamini byibyapa gusa",
+    ],
+  },
+  {
+    id: "gold",
+    amount: 2000,
+    label: "Gold (2000 RWF)",
+    exams: 25,
+    durationDays: 30,
+    features: [
+      "Kwiga igihe kirekire",
+      "Gufata amanota no kugereranya uko uhagaze",
+      "Kwerekana ibisubizo by'ibizamini",
+      "Guhitamo gukora ibizamini byibyapa gusa",
+    ],
+  },
+  {
+    id: "platinum",
+    amount: 5000,
+    label: "Platinum (5000 RWF)",
+    exams: 60,
+    durationDays: 75,
+    features: [
+      "Ibizamini byinshi birimo iby'umwihariko",
+      "Kwinjira muri forum y'abanyeshuri",
+      "Kwerekana ibisubizo by'ibizamini",
+      "Guhitamo gukora ibizamini byibyapa gusa",
+    ],
+  },
+  {
+    id: "unlimited",
+    amount: 10000,
+    label: "Unlimited (10000 RWF)",
+    exams: 1000000,
+    durationDays: 730,
+    features: [
+      "Uburyo butagira umupaka bwo kwitoza",
+      "Gufata amanota no kugereranya uko uhagaze",
+      "Kwiga imyaka 2 yose ukoresheje urubuga",
+      "Kwerekana ibisubizo by'ibizamini",
+      "Guhitamo gukora ibizamini byibyapa gusa",
+    ],
+  },
+];
+
+export default function MobileMoneyPayment({plan}) {
+  const [examPlans, setExamPlans] = useState(plan)
   const [phoneNumber, setPhoneNumber] = useState("")
   const [network, setNetwork] = useState<"MTN" | "Tigo">("MTN")
-  const [amount, setAmount] = useState("")
+  const [selectedPlan, setSelectedPlan] = useState(examPlans[0])
   const [isLoading, setIsLoading] = useState(false)
   const [isSuccess, setIsSuccess] = useState(false)
   const [error, setError] = useState("")
 
   const handlePayment = async () => {
-    if (!phoneNumber || !amount) {
-      setError("uzuza ibisabwa byose")
+    if (!phoneNumber) {
+      setError("uzuza numero ya telephone")
       return
     }
 
@@ -34,10 +119,10 @@ export default function MobileMoneyPayment() {
     setError("")
 
     try {
-      
+      // Simulate API call
       await new Promise(resolve => setTimeout(resolve, 2000))
       
-      
+      // Simulate random success/failure
       const isSuccessful = Math.random() > 0.2
       
       if (isSuccessful) {
@@ -54,8 +139,8 @@ export default function MobileMoneyPayment() {
 
   const resetForm = () => {
     setPhoneNumber("")
-    setAmount("")
     setNetwork("MTN")
+    setSelectedPlan(examPlans[0])
     setIsSuccess(false)
     setError("")
   }
@@ -63,7 +148,7 @@ export default function MobileMoneyPayment() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="outline">Mobile Money</Button>
+        <p>Mobile Money</p>
       </DialogTrigger>
       <DialogContent>
         <div className="flex flex-col gap-2">
@@ -92,21 +177,30 @@ export default function MobileMoneyPayment() {
               ubwishyu bwawe bwakiriwe neza
             </p>
             <Button onClick={resetForm} className="w-full">
-              ishyura ibindi
+              Tangira gukora
             </Button>
           </div>
         ) : (
           <form className="space-y-5" onSubmit={(e) => e.preventDefault()}>
             <div className="space-y-4">
               <div className="space-y-2">
-                <Label htmlFor="network">Mobile Network</Label>
-                <Select value={network} onValueChange={(value: "MTN" | "Tigo") => setNetwork(value)}>
+                <Label htmlFor="network">Hitamo ubwishyu</Label>
+                <Select 
+                  value={selectedPlan?.id}
+                  onValueChange={(value) => {
+                    const plan = examPlans.find(p => p.id === value)
+                    if (plan) setSelectedPlan(plan)
+                  }}
+                >
                   <SelectTrigger>
-                    <SelectValue placeholder="Select network" />
+                    <SelectValue placeholder="Select payment plan" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="MTN">MTN Mobile Money</SelectItem>
-                    <SelectItem value="Tigo">Tigo Cash</SelectItem>
+                    {examPlans.map((plan) => (
+                      <SelectItem key={plan.id} value={plan.id}>
+                        {plan.label}
+                      </SelectItem>
+                    ))}
                   </SelectContent>
                 </Select>
               </div>
@@ -116,7 +210,7 @@ export default function MobileMoneyPayment() {
                 <Input
                   id="phone"
                   type="tel"
-                  placeholder={`${network} phone number`}
+                  placeholder={`Numero ya telephone`}
                   value={phoneNumber}
                   onChange={(e) => setPhoneNumber(e.target.value)}
                   required
@@ -124,15 +218,13 @@ export default function MobileMoneyPayment() {
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="amount">Rwf</Label>
+                <Label htmlFor="amount">Amafaranga</Label>
                 <Input
                   id="amount"
-                  type="number"
-                  placeholder="shyiramo amafaranga"
-                  min="300"
-                  value={amount}
-                  onChange={(e) => setAmount(e.target.value)}
-                  required
+                  type="text"
+                  placeholder="Amafaranga"
+                  value={`${selectedPlan?.amount ?? 0} RWF`}
+                  readOnly
                 />
               </div>
             </div>
@@ -153,7 +245,7 @@ export default function MobileMoneyPayment() {
                   Processing...
                 </>
               ) : (
-                "Make Payment"
+                `Pay ${selectedPlan?.amount ?? 0} RWF`
               )}
             </Button>
 
